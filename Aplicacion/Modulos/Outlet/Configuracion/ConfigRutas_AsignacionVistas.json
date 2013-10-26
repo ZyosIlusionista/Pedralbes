@@ -1,0 +1,17 @@
+{
+	"Rutas":
+	{
+		"Modulo":			"Outlet",
+		"Carpeta_Public":	"Outlet",
+		"Carpeta_Imagenes":	"img", 
+		"Carpeta_Css":		"css",
+		"Carpeta_Js":		"js"
+	},
+	"Asignacion_Vistas":
+	{
+		"0":
+		[
+			"{% Nombre_Archivo %}"
+		]
+	}
+}

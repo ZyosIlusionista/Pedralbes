@@ -1,0 +1,20 @@
+{
+	"DEFAULT":
+	{
+		"dbname":	"Nombre Base de Datos",
+		"user":		"Usuario",
+		"password":	"password de la Base",
+		"host":		"localhost",
+		"driver":	"pdo_mysql",
+		"charset":	"iso-8859-1"
+	},
+	"PEDRALBES":
+	{
+		"dbname":	"pedralbes",
+		"user":		"pedralbes",
+		"password":	"pedralbes123",
+		"host":		"localhost",
+		"driver":	"pdo_mysql",
+		"charset":	"utf8"
+	}
+}

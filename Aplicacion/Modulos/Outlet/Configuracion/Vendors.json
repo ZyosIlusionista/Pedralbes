@@ -1,0 +1,11 @@
+{
+	"Configuracion":
+	{
+		"Activo": false
+	}, 
+	"Vendors":
+	[
+		{"Activo": false, "Ruta":"Carpeta/Archivo.php"},
+		{"Activo": false, "Ruta":"Carpeta/Archivo.php"}
+	]
+}

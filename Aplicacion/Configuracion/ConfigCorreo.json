@@ -1,0 +1,30 @@
+{
+	"DEFAULT":
+	{
+		"Funcion_Mail": false,
+		"Configuracion":
+		{
+			"IsSMTP":		true,
+			"SMTPAuth":		true,
+			"SMTPSecure":	"ssl",
+			"Host":			"ssl://smtp.gmail.com",
+			"Port":			"465",
+			"Username":		"correo@gmail.com",
+			"Password":		"password"
+		}
+	},
+	"MI_APLICACION":
+	{
+		"Funcion_Mail": false,
+		"Configuracion":
+		{
+			"IsSMTP":		true,
+			"SMTPAuth":		true,
+			"SMTPSecure":	"ssl",
+			"Host":			"ssl://smtp.gmail.com",
+			"Port":			"465",
+			"Username":		"correo@gmail.com",
+			"Password":		"password"
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"DEFAULT":
+	{
+		"Enrutamiento":
+		{
+			"Carpeta":				"Outlet/",
+			"Configuracion":		"Configuracion/",
+			"Ayudas":				"Helpers/",
+			"Vendors":				"Vendors/",
+			"Controladores":		"Controladores/",
+			"Modelos":				"Modelos/",
+			"Vistas":				"Vistas/"
+		},
+		"Configuracion":
+		{
+			"Entorno_Desarrollo": 	false,
+			"Llave_Encriptacion":	"N3ur4l3ncr1pt4c10n",
+			"Codificacion":			"Content-Type: text/html; charset=iso-8859-1"
+		}
+	},
+	"OUTLET":
+	{
+		"Enrutamiento":
+		{
+			"Carpeta":				"Outlet/",
+			"Configuracion":		"Configuracion/",
+			"Ayudas":				"Helpers/",
+			"Vendors":				"Vendors/",
+			"Controladores":		"Controladores/",
+			"Modelos":				"Modelos/",
+			"Vistas":				"Vistas/"
+		},
+		"Configuracion":
+		{
+			"Entorno_Desarrollo": 	false,
+			"Llave_Encriptacion":	"N3ur4l3ncr1pt4c10n11",
+			"Codificacion":			"Content-Type: text/html; charset=iso-8859-1"
+		}
+	}
+}

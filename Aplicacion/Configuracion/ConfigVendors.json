@@ -1,0 +1,8 @@
+{
+	"DBAL Doctrine 2":
+	{ "Activo":	false, "Ruta":"Doctrine/Common/ClassLoader.php" },
+	"PHPMailer":
+	{ "Activo":	true, "Ruta":"PHPMailer/class.phpmailer.php" },
+	"Twig":
+	{ "Activo":	false, "Ruta":"Twig/Autoloader.php.php" }
+}
