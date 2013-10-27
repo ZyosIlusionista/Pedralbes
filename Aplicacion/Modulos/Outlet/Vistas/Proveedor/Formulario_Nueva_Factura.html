@@ -1,0 +1,315 @@
+{% extends 'Basica/Base.html' %}
+	
+	{% block Contenido %}
+		<div class="g12">
+			<h1>Nueva Factura Proveedor <span><a href="doc-form.html" class="small">Ingreso de las Nuevas Facturas Generadas por el Proveedor</a></span></h1>
+			<br /><br />
+			<form id="form" action="submit.php" method="post" autocomplete="off">
+				<fieldset>
+					<label>Información de la Factura del Proveedor</label>
+					<section>
+						<label for="text_field">Proveedor</label>
+						<div><input id="autocomplete_inline" name="autocomplete_inline" type="text" class="autocomplete ui-autocomplete-input" data-source="{{ListadoProveedores}}" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+					</section>
+					<section><label for="text_tooltip">Field with Tooltip</label>
+						<div><input type="text" id="text_tooltip" name="text_tooltip" original-title="A Tooltip">
+						<span>Just specify a title attribut to get a Tooltip</span>
+					</div>
+			</section>
+			<section><label for="text_tooltip">Placeholder Text</label>
+			<div><input type="text" id="text_placeholder" name="text_placeholder" placeholder="your placeholder text" class="placeholder">
+			<span>use the placeholder attribute <code>placeholder="your placeholder text"</code></span>
+			</div>
+			</section>
+			<section><label for="text_field">Multiple Text Field</label>
+			<div><input type="text" id="multi_text_field_1" name="multi_text_field_1" class="g2"><input type="text" id="multi_text_field_2" name="multi_text_field_2" class="g1"><input type="text" id="multi_text_field_3" name="multi_text_field_3" class="g3"><br>
+			<span>use g<em>X</em> from the 960 Grid System: <code>class="g3"</code></span>
+			</div>
+			</section>
+			<section><label for="textarea">Textarea</label>
+			<div><textarea id="textarea" name="textarea" rows="10"></textarea></div>
+			</section>
+			<section><label for="textarea_auto">Autogrow Textarea<br><span>Some extra information</span></label>
+			<div><textarea id="textarea_auto" name="textarea_auto" data-autogrow="true" style="overflow: hidden;"></textarea>
+			<span>will expand after you hit the bottom edge</span>
+			<div style="position: absolute; display: none; word-wrap: break-word; font-weight: normal; width: 622px; font-family: 'PT Sans', sans-serif; line-height: normal; font-size: 13px; padding: 6px 2px;">&nbsp;</div></div>
+			</section>
+			<section><label for="textarea_auto">WYSIWYG Editor<br><span>(W)hat (y)ou (s)ee (i)s (w)hat (y)ou (g)et</span></label>
+			<div><div class="wysiwyg" style="width: 626px;"><ul role="menu" class="toolbar"><li role="menuitem" unselectable="on" class="bold" title="Bold">bold</li><li role="menuitem" unselectable="on" class="italic" title="Italic">italic</li><li role="menuitem" unselectable="on" class="underline" title="Underline">underline</li><li role="menuitem" unselectable="on" class="strikeThrough" title="Strike-through">strikeThrough</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="justifyLeft" title="Justify Left">justifyLeft</li><li role="menuitem" unselectable="on" class="justifyCenter" title="Justify Center">justifyCenter</li><li role="menuitem" unselectable="on" class="justifyRight" title="Justify Right">justifyRight</li><li role="menuitem" unselectable="on" class="justifyFull" title="Justify Full">justifyFull</li><li role="menuitem" unselectable="on" class="highlight" title="Highlight">highlight</li><li role="menuitem" unselectable="on" class="colorpicker" title="Colorpicker">colorpicker</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="indent" title="Indent">indent</li><li role="menuitem" unselectable="on" class="outdent" title="Outdent">outdent</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="subscript" title="Subscript">subscript</li><li role="menuitem" unselectable="on" class="superscript" title="Superscript">superscript</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="undo" title="Undo">undo</li><li role="menuitem" unselectable="on" class="redo" title="Redo">redo</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="insertOrderedList" title="Insert Ordered List">insertOrderedList</li><li role="menuitem" unselectable="on" class="insertUnorderedList" title="Insert Unordered List">insertUnorderedList</li><li role="menuitem" unselectable="on" class="insertHorizontalRule" title="Insert Horizontal Rule">insertHorizontalRule</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="createLink" title="Create link">createLink</li><li role="menuitem" unselectable="on" class="insertImage" title="Insert image">insertImage</li><li role="menuitem" unselectable="on" class="code" title="Code snippet">code</li><li role="menuitem" unselectable="on" class="insertTable" title="Insert table">insertTable</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="h1" title="Header 1">h1</li><li role="menuitem" unselectable="on" class="h2" title="Header 2">h2</li><li role="menuitem" unselectable="on" class="h3" title="Header 3">h3</li><li role="menuitem" unselectable="on" class="h4" title="Header 4">h4</li><li role="menuitem" unselectable="on" class="h5" title="Header 5">h5</li><li role="menuitem" unselectable="on" class="h6" title="Header 6">h6</li><li role="menuitem" unselectable="on" class="paragraph" title="Paragraph">paragraph</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="cut" title="Cut">cut</li><li role="menuitem" unselectable="on" class="copy" title="Copy">copy</li><li role="menuitem" unselectable="on" class="paste" title="Paste">paste</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="rtl" title="Right to Left">rtl</li><li role="menuitem" unselectable="on" class="ltr" title="Left to Right">ltr</li><li role="menuitem" unselectable="on" class="increaseFontSize" title="Increase font size">increaseFontSize</li><li role="menuitem" unselectable="on" class="decreaseFontSize" title="Decrease font size">decreaseFontSize</li><li role="separator" class="separator"></li><li role="menuitem" unselectable="on" class="html" title="View source code">html</li><li role="menuitem" unselectable="on" class="removeFormat" title="Remove formatting">removeFormat</li></ul><div style="clear: both;"><!-- --></div><iframe frameborder="0" tabindex="0" style="min-height: 210px; width: 618px;"></iframe></div><textarea id="textarea_wysiwyg" name="textarea_wysiwyg" class="html" rows="12" style="display: none;"></textarea>
+			</div>
+			</section>
+			</fieldset>
+			
+			
+			<div class="alert info">Some Fields are MouseWheel enabled!</div>
+			<fieldset>
+			<label>Numbers</label>
+			<section><label for="integer">Integer</label>
+			<div><input id="integer" name="integer" type="number" class="integer">
+			<br><span>This must be an integer</span>
+			</div>
+			</section>
+			<section><label for="decimal">Decimal</label>
+			<div><input id="decimal" name="decimal" type="number" class="decimal">
+			<br><span>This must be a decimal number</span>
+			</div>
+			</section>
+			<section><label for="integer_minmax">Define min and max values</label>
+			<div><input id="integer_minmax" name="integer_minmax" type="number" class="integer" min="20" max="40"><input id="decimal_minmax" name="decimal_minmax" type="number" class="decimal" min="-20" max="20">
+			<br><span>Define ranges with <code>data-min="20" data-max="40"</code> and <code>data-min="-20" data-max="20"</code></span>
+			</div>
+			</section>
+			<section><label for="integer_minmax">Define steps<br><span>only for mousewheel</span></label>
+			<div><input id="integer_steps" name="integer_steps" type="number" class="integer" data-step="50" original-title="Use your MouseWheel!"><input id="decimal_steps" name="decimal_steps" type="number" class="decimal" step="0.04" data-decimals="4">
+			<br><span>Define steps with <code>data-step="50"</code> and <code>data-step="0.04" data-decimals="4"</code></span>
+			</div>
+			</section>
+			<section><label for="integer_start_from">Define a start<br><span>only for mousewheel</span></label>
+			<div><input id="integer_start_from" name="integer_start_from" type="number" class="integer" data-start="1900" min="1900"> - <input id="integer_start_to" name="integer_start_to" type="number" class="integer" data-start="2000" max="2011">
+			<br><span>Simulate Year Fields with <code>data-start="1900" data-min="1900"</code> and <code>data-start="2000" data-max="2011"</code></span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Validation <span>with regular expressions</span></label>
+			<section><label for="regex_letter">Only Letters</label>
+			<div><input id="regex_letter" name="regex_letter" type="text" data-regex="^[a-zA-Z ]+$"><span>Regular Expression: <code>data-regex="^[a-zA-Z ]+$"</code></span></div>
+			</section>
+			<section><label for="regex_number">Only Numbers</label>
+			<div><input id="regex_number" name="regex_number" type="text" data-regex="^[0-9 ]+$"><span>Regular Expression: <code>data-regex="^[0-9 ]+$"</code></span></div>
+			</section>
+			<section><label for="email">Email</label>
+			<div><input id="email" name="email" type="email"></div>
+			</section>
+			<section><label for="url">Url</label>
+			<div><input id="url" name="url" type="url" placeholder="http://" class="placeholder">
+			<br><span>Instant is off for URLs. Use <code>data-instant="true"</code> for instant validation</span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>File Upload <span>not all files are allowed in the livepreview</span></label>
+			<section><label for="file_upload">Single File Upload<br><span>your uploaded data will get delete within 1 hour</span></label>
+			<div><div class="uploader" id="uniform-file_upload"><input type="file" id="file_upload" name="file_upload" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><ul class="fileuploadpool single drop"></ul><div class="fileuploadui"><a class="btn small fileupload_cancel" title="cancel upload">cancel upload</a></div></div>
+			</section>
+			<section><label for="file_upload_multiple">Multi File Upload</label>
+			<div><div class="uploader" id="uniform-file_upload_multiple"><input type="file" id="file_upload_multiple" name="file_upload_multiple" multiple="" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><ul class="fileuploadpool multiple drop"></ul><div class="fileuploadui"><a class="btn small fileupload_cancel" title="cancel upload">cancel upload</a></div>
+			</div>
+			</section>
+			<section><label for="file_upload_manual">Manual start<br><span>only jpgs and gifs are allowed with less than 100 kb</span></label>
+			<div><div class="uploader" id="uniform-file_upload_manual"><input type="file" id="file_upload_manual" name="file_upload_manual" data-auto-upload="false" multiple="" data-allowed-extensions="[jpg,jpeg,gif]" data-max-file-size="100000" size="19" style="opacity: 0;"><span class="filename">No file selected</span><span class="action">Choose File</span></div><ul class="fileuploadpool multiple drop"></ul><div class="fileuploadui"><a class="btn small fileupload_start" title="start upload">start upload</a><a class="btn small fileupload_cancel" title="cancel upload">cancel upload</a></div>
+			<span>drag &amp; drop is currenlty only supported on Firefox 3.6+ Safari 5+ and Chrome 6+</span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Other Fields</label>
+			<section><label for="password">Password<br><span>with confirmation</span></label>
+			<div><input type="password" id="password" name="password" class="password"><div class="passwordstrength" style="display: none;"></div><input type="password" id="password_confirm" name="password_confirm" class="password" style="display: none;"></div>
+			</section>
+			<section><label for="color">Color</label>
+			<div><input type="text" id="color" name="color" class="color miniColors" maxlength="7" autocomplete="off"><a class="miniColors-trigger" style="background-color: rgb(255, 255, 255);" href="#"></a><br>
+			<span>use mousewheel for brightness, mousewheel+shift for saturation and mousewheel+shift+alt for hue (not supported in all browsers)</span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Autocomplete</label>
+			<section><label for="autocomplete">Simple Autocomplete</label>
+			<div><input id="autocomplete" name="autocomplete" type="text" class="autocomplete ui-autocomplete-input" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+			<br><span>the source is defined within the call <code>$(selector).wl_Autocomplete({source:[...,...]});</code></span>
+			</div>
+			</section>
+			<section><label for="autocomplete_inline">Autocomplete with inline data</label>
+			<div><input id="autocomplete_inline" name="autocomplete_inline" type="text" class="autocomplete ui-autocomplete-input" data-source="[abc,def,ghi,jkl,mno,pqr,stu,vwx,yz]" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+			<br><span>inline data with <code>data-source="[abc,def,ghi,jkl,mno,pqr,stu,vwx,yz]"</code></span>
+			</div>
+			</section>
+			<section><label for="autocomplete_function">Autocomplete with user function</label>
+			<div><input id="autocomplete_function" name="autocomplete_function" type="text" class="autocomplete ui-autocomplete-input" data-source="myAutocompleteFunction" autocomplete="off" role="textbox" aria-autocomplete="list" aria-haspopup="true">
+			<br><span>source is a user function with <code>data-source="myAutocompleteFunction"</code>. Function must return an array</span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Date &amp; Time</label>
+			<section><label for="date">Simple Date Field</label>
+			<div><input id="date" name="date" type="text" class="date hasDatepicker">
+			<br><span>You can define displayed format within the settings. yyyy-mm-dd will always be used on submit</span>
+			</div>
+			</section>
+			<section><label for="datetime">Date Field with Time<br><span>mousewheel enabled!</span></label>
+			<div><input id="datetime" name="datetime" type="text" class="date hasDatepicker"><input type="text" class="time" data-connect="datetime" maxlength="5"><span class="timeformat"></span>
+			<br><span>These fields get converted to a single date value on submit (yyyy-mm-dd hh:mm)</span>
+			</div>
+			</section>
+			<section><label for="predefined_time">Predefined Time</label>
+			<div><input id="predefined_time" name="predefined_time" type="text" class="date hasDatepicker" data-value="+7"><input type="text" class="time" data-connect="predefined_time" data-value="now" maxlength="5"><span class="timeformat"></span>
+			<br><span>This fields always display the date in one week with <code>data-value="+7"</code> for the date field and <code>data-value="now"</code> for the time field</span>
+			</div>
+			</section>
+			<section><label for="time_only_12">Time only</label>
+			<div><input type="text" class="time" id="time_only_12" data-timeformat="12" maxlength="5"><span class="timeformat"></span><input type="text" class="time" id="time_only_24" maxlength="5" original-title="Hold down the shift key to scroll hours!"><span class="timeformat"></span>
+			<br><span>Use 12h timeformat with <code>data-timeformat="12"</code>. Both fields are always in 24h format on submit</span>
+			</div>
+			</section>
+			<section><label>Inline Date Field<br><span>mousewheel enabled! Use shift key to scroll trough month</span></label>
+			<div><div class="date hasDatepicker" id="inline_date" data-value="tomorrow"><div class="ui-datepicker-inline ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" style="display: block;"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" onclick="DP_jQuery_1382840453697.datepicker._adjustDate('#inline_date', -1, 'M');" title="prev"><span class="ui-icon ui-icon-circle-triangle-w">prev</span></a><a class="ui-datepicker-next ui-corner-all" onclick="DP_jQuery_1382840453697.datepicker._adjustDate('#inline_date', +1, 'M');" title="next"><span class="ui-icon ui-icon-circle-triangle-e">next</span></a><div class="ui-datepicker-title"><span class="ui-datepicker-month">October</span>&nbsp;<span class="ui-datepicker-year">2013</span></div></div><table class="ui-datepicker-calendar"><thead><tr><th class="ui-datepicker-week-col">Wk</th><th class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th><span title="Monday">Mo</span></th><th><span title="Tuesday">Tu</span></th><th><span title="Wednesday">We</span></th><th><span title="Thursday">Th</span></th><th><span title="Friday">Fr</span></th><th class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class="ui-datepicker-week-col">39</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">1</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">2</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">3</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">4</a></td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">5</a></td></tr><tr><td class="ui-datepicker-week-col">40</td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">6</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">7</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">8</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">9</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">10</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">11</a></td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">12</a></td></tr><tr><td class="ui-datepicker-week-col">41</td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">13</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">14</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">15</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">16</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">17</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">18</a></td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">19</a></td></tr><tr><td class="ui-datepicker-week-col">42</td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">20</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">21</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">22</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">23</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">24</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">25</a></td><td class=" ui-datepicker-week-end  ui-datepicker-today" onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default ui-state-highlight" href="#">26</a></td></tr><tr><td class="ui-datepicker-week-col">43</td><td class=" ui-datepicker-week-end " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">27</a></td><td class="  ui-datepicker-current-day" onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default ui-state-active" href="#">28</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">29</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">30</a></td><td class=" " onclick="DP_jQuery_1382840453697.datepicker._selectDay('#inline_date',9,2013, this);return false;"><a class="ui-state-default" href="#">31</a></td><td class=" ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td><td class=" ui-datepicker-week-end ui-datepicker-other-month ui-datepicker-unselectable ui-state-disabled">&nbsp;</td></tr></tbody></table></div></div>
+			<br><span>yyyy-mm-dd on submit. Can't be undefined</span>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Sliders <span>working on iPhone and iPad!</span></label>
+			<section><label>Slider</label>
+			<div><div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider"><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%;"></a></div></div>
+			</section>
+			<section><label>vertical Sliders</label>
+			<div>
+			<div>
+			<div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" data-connect="slider_v_1" data-orientation="vertical" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+			<div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" data-connect="slider_v_2" data-orientation="vertical" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+			<div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" data-connect="slider_v_3" data-orientation="vertical" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+			<div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" data-connect="slider_v_4" data-orientation="vertical" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+			<div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" data-connect="slider_v_5" data-orientation="vertical" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="bottom: 0%;"></a></div>
+			</div>
+			<div>
+			<input type="number" class="integer w_25p" id="slider_v_1">
+			<input type="number" class="integer w_25p" id="slider_v_2">
+			<input type="number" class="integer w_25p" id="slider_v_3">
+			<input type="number" class="integer w_25p" id="slider_v_4">
+			<input type="number" class="integer w_25p" id="slider_v_5">
+			</div>
+			</div>
+			</section>
+			<section><label>Slider with tooltip</label>
+			<div><div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider_tooltip" data-tooltip="true" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="width: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" original-title="" style="left: 0%;"></a></div></div>
+			</section>
+			<section><label>Slider with custom tooltip Pattern</label>
+			<div><div class="slider ui-slider ui-slider-vertical ui-widget ui-widget-content ui-corner-all" id="slider_tooltip_pattern" data-tooltip="true" data-orientation="vertical" data-tooltip-pattern="current value is $ %n,-" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="height: 0%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" original-title="" style="bottom: 0%;"></a></div><br><span>use <code>data-tooltip-pattern="current value is $ %n,-"</code></span></div>
+			</section>
+			<section><label>Slider with connected input field</label>
+			<div><div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-connect="slider_connect" data-value="30" data-range="min"><div class="ui-slider-range ui-slider-range-min ui-widget-header" style="width: 30%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 30%;"></a></div>
+			<input type="number" class="integer" id="slider_connect"><span>set the start value within the input or with <code>data-value="30"</code> within the slider</span>
+			</div>
+			</section>
+			<section><label>Range Slider</label>
+			<div><div id="slider_range" class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-range="true" data-max="1000" data-values="[350,650]"><div class="ui-slider-range ui-widget-header" style="left: 35%; width: 30%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 35%;"></a><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 65%;"></a></div>
+			</div>
+			</section>
+			<section><label>Connected Range Slider</label>
+			<div><div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-range="true" data-max="1000" data-values="[250,750]" data-connect="[slider_range_from,slider_range_to]"><div class="ui-slider-range ui-widget-header" style="left: 25%; width: 50%;"></div><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 25%;"></a><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 75%;"></a></div>
+			<input type="number" class="integer" id="slider_range_from">
+			<input type="number" class="integer" id="slider_range_to">
+			<br><span>Use the shift key for faster scrolling</span>
+			</div>
+			</section>
+			<section><label>Custom Callback</label>
+			<div><div class="slider ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="slider_callback"><a href="#" class="ui-slider-handle ui-state-default ui-corner-all" style="left: 0%;"></a></div>
+			<div id="slider_callback_bar" style="background:#aaa;padding:2px;">Scroll!</div>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Other Basic Fields</label>
+			<section>
+			<label>Checkboxes</label>
+			<div>
+			<input type="checkbox" id="apples_check" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="apples_check">Apples</label>
+			<input type="checkbox" id="bananas_check" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="bananas_check">Bananas</label>
+			<input type="checkbox" id="oranges_check" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="oranges_check">Oranges</label>
+			</div>
+			</section>
+			<section>
+			<label>Radio Buttons</label>
+			<div>
+			<input type="radio" id="apples_radio" name="radio" value="Apples" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="apples_radio">Apples</label>
+			<input type="radio" id="bananas_radio" name="radio" value="Bananas" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="bananas_radio">Bananas</label>
+			<input type="radio" id="oranges_radio" name="radio" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="oranges_radio">Oranges</label>
+			</div>
+			</section>
+			<section>
+			<label for="dropdown_vegetables">Dropdown</label>
+			<div>					
+			<div class="selector" id="uniform-dropdown_vegetables"><span>Broccoli</span><select name="dropdown_vegetables" id="dropdown_vegetables" style="opacity: 0;">
+			<optgroup label="Vegetables">
+			<option value="Broccoli">Broccoli</option>
+			<option value="Corn">Corn</option>
+			<option value="Spinach">Spinach</option>
+			</optgroup>
+			</select></div>
+			<div class="selector" id="uniform-dropdown_fruits"><span>Apples</span><select name="dropdown_fruits" id="dropdown_fruits" style="opacity: 0;">
+			<optgroup label="Fruits">
+			<option value="Apples">Apples</option>
+			<option value="Bananas">Bananas</option>
+			<option value="Oranges">Oranges</option>
+			</optgroup>
+			</select></div> 
+			</div>
+			</section>
+			<section>
+			<label for="multiselect">Multiple Select<br><span>use ctrl + shift key. The selection(right) is sortable with drag n' drop</span></label>
+			<div>					
+			<select name="multiselect[]" id="multiselect" multiple="" style="display: none;">
+			<option value="artichoke">Artichoke</option>
+			<option value="beans">Beans</option>
+			<option value="broccoli">Broccoli</option>
+			<option value="carrot">Carrot</option>
+			<option value="corn">Corn</option>
+			<option value="chicory">Chicory</option>
+			<option value="kohlrabi">Kohlrabi</option>
+			<option value="melon">Melon</option>
+			<option value="onion">Onion</option>
+			<option value="potato">Potato</option>
+			<option value="pumpkin">Pumpkin</option>
+			<option value="spinach">Spinach</option>
+			<option value="tomato">Tomato</option>
+			</select><div class="comboselectbox searchable" style="height: 200px;"><div class="combowrap"><input><ul class="comboselect"><li><a>Artichoke</a><a class="add"></a></li><li><a>Beans</a><a class="add"></a></li><li><a>Broccoli</a><a class="add"></a></li><li><a>Carrot</a><a class="add"></a></li><li><a>Corn</a><a class="add"></a></li><li><a>Chicory</a><a class="add"></a></li><li><a>Kohlrabi</a><a class="add"></a></li><li><a>Melon</a><a class="add"></a></li><li><a>Onion</a><a class="add"></a></li><li><a>Potato</a><a class="add"></a></li><li><a>Pumpkin</a><a class="add"></a></li><li><a>Spinach</a><a class="add"></a></li><li><a>Tomato</a><a class="add"></a></li></ul></div><div class="comboselectbuttons"><a class="add btn"></a><a class="addall btn"></a><a class="removeall btn"></a><a class="remove btn"></a></div><div class="combowrap"><ul class="comboselect ui-sortable"></ul></div></div>
+			</div>
+			</section>
+			</fieldset>
+			<fieldset>
+			<label>Required Fields</label>
+			<section><label for="required_field">Required Text Field&nbsp;<span class="required">&nbsp;</span></label>
+			<div><input type="text" id="required_field" name="required_field" required=""></div>
+			</section>
+			<section><label for="required_field_msg">Required Text Field with custom error message&nbsp;<span class="required">&nbsp;</span></label>
+			<div><input type="text" id="required_field_msg" name="required_field_msg" required="" data-errortext="This is an custom error text!">
+			<br><span>use <code>data-errortext="This is an custom error text!"</code> for custom message</span>
+			</div>
+			</section>
+			<section><label for="required_valid_field">Required Field with validation&nbsp;<span class="required">&nbsp;</span></label>
+			<div>
+			<span>Please type in 'OK':</span><br>
+			<input type="text" id="required_valid_field" name="required_valid_field" required="" data-regex="^OK$" class="w_10">
+			</div>
+			</section>
+			<section>
+			<label>Required checkboxes&nbsp;<span class="required">&nbsp;</span></label>
+			<div>
+			<input type="checkbox" id="required_foo_check" required="" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="required_foo_check">Foo is required this time</label>
+			<input type="checkbox" id="required_bar_check" required="" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="required_bar_check">Bar is required too</label>
+			<input type="checkbox" id="required_me_check" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="required_me_check">I'm not required</label>
+			</div>
+			</section>
+			<section>
+			<label>Required Radio Buttons&nbsp;<span class="required">&nbsp;</span></label>
+			<div>
+			<input type="radio" id="required_first_radio" name="required_radio" value="first" required="" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="required_first_radio">one</label>
+			<input type="radio" id="required_second_radio" name="required_radio" value="second" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="required_second_radio">is</label>
+			<input type="radio" id="required_third_radio" name="required_radio" value="third" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox radio"><span><span class="checkboxplaceholder"></span></span></span><label for="required_third_radio">required</label>
+			<br><span>use the <code>required</code> attribute on the first input element</span>
+			</div>
+			</section>
+			<section>
+			<div>
+			<input type="checkbox" id="agreed" data-errortext="This is mandatory!" required="" style="position: absolute; z-index: -1; visibility: hidden;"><span class="jquery-checkbox checkbox"><span><span class="checkboxplaceholder"></span></span></span><label for="agreed">I agree that this form is awesome ;)&nbsp;<span class="required">&nbsp;</span></label>
+			</div>
+			</section>
+			<section>
+			<div><button class="reset">Reset</button><button class="submit" name="submitbuttonname" value="submitbuttonvalue">Submit</button><span class="wl_formstatus"></span></div>
+			</section>
+			</fieldset>
+			</form>
+		</div>
+	{% endblock %}
