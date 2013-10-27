@@ -9,6 +9,6 @@
 		public function Index() {
 			
 			$Plantilla = new NeuralPlantillasTwig;
-			echo $Plantilla->MostrarPlantilla('Prueba.html', 'OUTLET');
+			echo $Plantilla->MostrarPlantilla('Central/Central.html', 'OUTLET');
 		}
 	}
