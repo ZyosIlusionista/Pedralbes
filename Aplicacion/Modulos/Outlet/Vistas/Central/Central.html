@@ -2,21 +2,44 @@
 	
 	{% block Contenido %}
 		<div class="g12">
-			<h1>Facturación<span><a href="doc-form.html" class="small">Creación factura electrónica Pedralbes</a></span></h1>	
+			<h1>Facturación<span><a href="doc-form.html" class="small">&nbsp&nbsp&nbsp Creación factura electrónica Pedralbes</a></span></h1>	
 		</div>
+		<div><br /><br /><br /><br /><br /><br />
+		<form action="#" method="POST" name="Form" id="Form">
+			<fieldset>
+				<label>Nueva Factura</label>
+				<section>
+					<label for="text_field">Datos Cliente</label>	
+					<div>
+						<input type="text" id="Cedula" name="Cedula" class="g3" placeholder="# Identificación"/><br /><br /><br />
+						<span id="Cargar"></span>
+					</div>
+				</section>
+				<section>
+					<label for="text_field">Producto</label>
+					<div>
+						<input type="text" id="Referencia" name="Referencia" class="g3" placeholder="# Referencia"/>
+						<input type="text" id="Referencia" name="Cantidad" class="g2" placeholder="Cantidad"/>
+						<a class="btn small fr" id="Nuevo_Producto">Nuevo Producto</a>
+					</div>
+				</section>
+			</fieldset>
+			<fieldset>
+				<label>Confirmar Factura</label>
 		
-				<section id="content">
 		
-		
-		
-			<div class="g12">
-			<p>A Finder for you online stuff</p>
-			<div class="fileexplorer"></div>
 			
-			</div>
-
-			
-			
-		</section><!-- end div #content -->
-		
+			</fieldset>
+		</div>		
+	{% endblock %}
+	
+	{% block Script %}
+		<script>
+			$(document).ready(function() {
+				$("#Cedula").change(function() {
+					var Cedula = $(this).attr('value');
+					$("#Cargar").html(Cedula);
+				});
+			});
+		</script>
 	{% endblock %}
