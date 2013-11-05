@@ -16,7 +16,7 @@
 			
 			$Plantilla = new NeuralPlantillasTwig;
 			$Plantilla->ParametrosEtiquetas('ListadoProveedores', $this->Modelo->ListadoProveedores());
-			echo $Plantilla->MostrarPlantilla('Proveedor/Formulario_Nueva_Factura.html', self::APP);
+			echo $Plantilla->MostrarPlantilla('Proveedor/Formulario_Nueva_Factura.html', AppAyuda::APP, AppAyuda::CACHE);
 			
 		}
 		
@@ -25,7 +25,7 @@
 		 */
 		public function Nuevo() {
 			$Plantilla = new NeuralPlantillasTwig;
-			echo $Plantilla->MostrarPlantilla('Proveedor/Nuevo.html', self::APP);
+			echo $Plantilla->MostrarPlantilla('Proveedor/Nuevo.html', AppAyuda::APP, AppAyuda::CACHE);
 		}
 		
 		/**

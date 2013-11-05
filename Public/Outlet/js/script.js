@@ -468,6 +468,8 @@ $(document).ready(function() {
 				return false;
 			});
 		*/	
+		
+		
 		/*----------------------------------------------------------------------*/
 		/* Toggle to nativ/ajax submit
 		/* http://revaxarts-themes.com/whitelabel/form.html
