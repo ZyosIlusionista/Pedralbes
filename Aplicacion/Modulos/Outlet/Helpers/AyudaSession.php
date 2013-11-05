@@ -7,7 +7,7 @@
 		
 		public static function RegistrarSession($Nombre = false, $Usuario = false, $Fecha = false, $Hora = false, $Permisos = false) {
 			if($Nombre == true AND $Usuario == true AND $Fecha == true AND $Hora == true AND $Permisos == true) {
-				NeuralSesiones::AgregarLlave('Pedralbes', self::CodificacionSession($Nombre = false, $Usuario = false, $Fecha = false, $Hora = false, $Permisos = false));
+				NeuralSesiones::AgregarLlave('Pedralbes', self::CodificacionSession($Nombre, $Usuario, $Fecha, $Hora, $Permisos));
 			}
 		}
 		
@@ -17,8 +17,8 @@
 				$DatosSession = self::DecodificacionSession($_SESSION['Pedralbes']);
 				if(self::ValidacionParametros($DatosSession) == true) {
 					if(self::ValidacionPermisos($DatosSession['Informacion']['Permisos']) == false) {
-						header("Location: ".NeuralRutasApp::RutaURL('Error/'));
-						exit(),
+						header("Location: ".NeuralRutasApp::RutaURL('Error/NoPermiso'));
+						exit();
 					}
 				}
 				else {
@@ -29,6 +29,13 @@
 			else {
 				header("Location: ".NeuralRutasApp::RutaURL('LogOut'));
 				exit();
+			}
+		}
+		
+		public static function DatosSession($Valido = false) {
+			if($Valido == true) {
+				$Data = self::DecodificacionSession($_SESSION['Pedralbes']);
+				return $Data['Informacion'];
 			}
 		}
 		
@@ -50,7 +57,7 @@
 		}
 		
 		private static function ValidacionParametros($Array = array()) {
-			$Data[] = ($Array['Session']['Tiempo'] == strtotime($Array['Informacion']['Fecha'].' '.$Array['Informacion']['Hora'])) ? true : false;
+			$Data[] = ($Array['Session']['Tiempo'] == strtotime($Array['Informacion']['Fecha'].' '.$Array['Informacion']['Hora'])+self::$TiempoSession) ? true : false;
 			$Data[] = ($Array['Session']['Fecha'] == $Array['Informacion']['Fecha']) ? true : false;
 			$Data[] = ($Array['Session']['Hora'] == $Array['Informacion']['Hora']) ? true : false;
 			$Data[] = ($Array['Session']['Llave'] == implode('_', array($Array['Informacion']['Usuario'], $Array['Informacion']['Fecha'], $Array['Informacion']['Hora'], self::$Complemento))) ? true : false;
@@ -98,7 +105,7 @@
 		private static function MatrizDeCodificacionBase($Data = false) {
 			$Array = json_decode(NeuralEncriptacion::DesencriptarDatos($Data, AppAyuda::APP), true);
 			foreach ($Array AS $Nombre => $Valor) {
-				$Datos[$Nombre] = NeuralEncriptacion::DesencriptarDatos(json_decode($Valor, true), AppAyuda::APP);
+				$Datos[$Nombre] = json_decode(NeuralEncriptacion::DesencriptarDatos($Valor, AppAyuda::APP), true);
 			}
 			return $Datos;
 		}
@@ -111,7 +118,7 @@
 			foreach ($Array AS $Llave => $Parametros) {
 				foreach ($Parametros AS $Nombre => $Valor) {
 					if(array_key_exists($Nombre, $Matriz) == true) {
-						$Array[$Llave][$Nombre] = NeuralEncriptacion::EncriptarDatos($Valor, $Matriz[$Nombre]);
+						$Array[$Llave][$Nombre] = NeuralEncriptacion::DesencriptarDatos($Valor, $Matriz[$Nombre]);
 					}
 				}
 			}
