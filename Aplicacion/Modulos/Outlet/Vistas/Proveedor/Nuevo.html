@@ -1,0 +1,93 @@
+{% extends 'Basica/Base.html' %}
+	
+	{% block Contenido %}
+		<div class="g12">
+			<h1>Nuevo Proveedor</h1>
+			<p>Ingreso de Nuevo Proveedor</p>
+			<a href="{{NeuralRutasApp.RutaURL}}Proveedor/Nuevo" class="btn small fr">Nuevo Proveedor</a><br /><br />
+			<form action="#" method="POST" name="Form" id="Form">
+				<fieldset>
+					<label>Nuevo Proveedor</label>
+					<section>
+						<label for="text_field">Nombre del Proveedor</label>
+						<div><input type="text" id="Nombre" name="Nombre" /></div>
+					</section>
+					<section>
+						<label for="text_field">Dirección</label>
+						<div><input type="text" id="Direccion" name="Direccion" /></div>
+					</section>
+					<section>
+						<label for="text_field">Telefono</label>
+						<div><input type="text" id="Telefono_1" name="Telefono_1" /></div>
+					</section>
+					<section>
+						<label for="text_field">Contacto</label>
+						<div><input type="text" id="Contacto_1" name="Contacto_1" /></div>
+					</section>
+					<section>
+						<label for="text_field">Telefono</label>
+						<div><input type="text" id="Telefono_2" name="Telefono_2" /></div>
+					</section>
+					<section>
+						<label for="text_field">Contacto</label>
+						<div><input type="text" id="Contacto_2" name="Contacto_2" /></div>
+					</section>
+					<section>
+						<label for="textarea_auto">Comentarios</label>
+						<div>
+							<textarea id="Comentario" name="Comentario" data-autogrow="true" style="overflow: hidden; height: 70px;"></textarea>
+							<span>Comentarios adicionales sobre el proveedor</span>
+						</div>
+					</section>
+					<section>
+						<div><button class="reset" type="reset">Restaurar</button><button class="submit" name="GuardarProveedor" value="Guardar">Guardar</button></div>
+					</section>
+				</fieldset>
+			</form>
+		</div>
+	{% endblock %}
+	
+	{% block Script %}
+		<style>
+			.error {
+				font-family: verdana;
+				font-size: 10px;
+				font-weight: bold;
+				color: red;
+				margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript" src="{{NeuralRutasApp.RutaURLBase}}Public/js/jquery.validate.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#Form").validate({
+					rules: {
+						Nombre: {required: true, maxlength: 100}, 
+						Direccion: {required: true}, 
+						Telefono_1: {required: true}, 
+						Contacto_1: {required: true}
+					},
+					messages: {
+						Nombre: {required: "Ingrese el Nombre del Proveedor", maxlength: "El Nombre del Proveedor debe tener como Maximo 100 Caracteres"}, 
+						Direccion: {required: "Ingrese la Dirección del Proveedor"}, 
+						Telefono_1: {required: "Ingrese el Telefono del Proveedor"}, 
+						Contacto_1: {required: "Ingrese el Nombre de Contacto"}
+					},
+				submitHandler: function(form) {
+					$.ajax({
+						type: "POST", 
+						url: "{{NeuralRutasApp.RutaURL}}Proveedor/NuevoProcesar", 
+						dataType: "html", 
+						data: $("#Form").serialize(), 
+						beforeSend:function(){
+							$("#Form").html('<div><img src="{{NeuralRutasApp.RutaURLBase}}Public/images/Load/neural_load.gif" alt="" /></div>');
+						},
+						success: function(response){
+							$("#Form").html(response);
+						}
+					})
+					}
+				});
+			});
+		</script>
+	{% endblock %}

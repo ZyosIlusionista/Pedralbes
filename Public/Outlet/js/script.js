@@ -459,7 +459,7 @@ $(document).ready(function() {
 		/* Confirm Box for the Form Filler
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
-		
+		/*
 			$('#formfiller').click(function(){
 				var _this = this;
 				$.confirm('To fill a form with your data you have to add a query string to the location.\nhttp://domain.tld/path?key=value&key2=value2',function(){
@@ -467,13 +467,13 @@ $(document).ready(function() {
 				});
 				return false;
 			});
-			
+		*/	
 		/*----------------------------------------------------------------------*/
 		/* Toggle to nativ/ajax submit
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
 		
-			$('#formsubmitswitcher').click(function(){
+		/*	$('#formsubmitswitcher').click(function(){
 				var _this = $(this);
 				if(_this.text() == 'send form natively'){
 					$content.find('form').wl_Form('set','ajax',false);
@@ -486,7 +486,7 @@ $(document).ready(function() {
 				}
 				return false;
 			});
-					
+			*/		
 		/*----------------------------------------------------------------------*/
 
 
@@ -495,7 +495,7 @@ $(document).ready(function() {
 		/* http://revaxarts-themes.com/whitelabel/form.html
 		/*----------------------------------------------------------------------*/
 			
-			$content.find('form').wl_Form({
+		/*	$content.find('form').wl_Form({
 				onSuccess: function(data, status){
 					if(window.console){
 						console.log(status);
@@ -508,7 +508,7 @@ $(document).ready(function() {
 				}
 			});
 		
-		
+		*/
 		
 		/*----------------------------------------------------------------------*/
 		/* Gallery with some custom callbacks

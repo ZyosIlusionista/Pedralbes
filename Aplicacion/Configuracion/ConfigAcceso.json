@@ -32,8 +32,8 @@
 		},
 		"Configuracion":
 		{
-			"Entorno_Desarrollo": 	false,
-			"Llave_Encriptacion":	"N3ur4l3ncr1pt4c10n11",
+			"Entorno_Desarrollo": 	true,
+			"Llave_Encriptacion":	"P3dr4lb3$Neur4lZy0$F1*",
 			"Codificacion":			"Content-Type: text/html; charset=iso-8859-1"
 		}
 	}

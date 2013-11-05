@@ -20,7 +20,7 @@ $(document).ready(function() {
 				if(data.username || data.password){
 					location.href="dashboard.html";
 				}else{
-					$.wl_Alert('Please provide something!','info','#content');
+					$.wl_Alert('Ingrese Los Datos Correspondientes!','info','#content');
 				}
 				return false;
 

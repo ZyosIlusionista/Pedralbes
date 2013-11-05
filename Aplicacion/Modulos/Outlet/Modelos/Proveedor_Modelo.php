@@ -5,16 +5,15 @@
 			parent::__Construct();
 		}
 		
-		public function ListadoProveedores() {
-			$Consulta = new NeuralBDConsultas;
-			$Consulta->CrearConsulta('proveedores');
-			$Consulta->AgregarColumnas('Nombre');
-			$Consulta->AgregarCondicion("Estado = 'ACTIVO'");
-			$Consulta->PrepararQuery();
-			$Data = $Consulta->ExecuteConsulta('PEDRALBES');
-			foreach ($Data AS $Valor) {
-				$Lista[] = $Valor['Nombre'];
+		public function GuardarNuevoProveedor($Array = array(), $Usuario) {
+			$SQL = new NeuralBDGab;
+			$SQL->SeleccionarDestino('PEDRALBES', 'Proveedores');
+			foreach ($Array AS $Columna => $Valor) {
+				$SQL->AgregarSentencia($Columna, $Valor);
 			}
-			return json_encode($Lista);
+			$SQL->AgregarSentencia('Usuario', $Usuario);
+			$SQL->AgregarSentencia('Fecha', date("Y-m-d"));
+			$SQL->AgregarSentencia('Hora', date("H:i:s"));
+			$SQL->InsertarDatos();
 		}
 	}
