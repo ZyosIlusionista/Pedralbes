@@ -7,10 +7,7 @@
 		}
 		
 		public function Index() {
-			Ayudas::print_r(AyudaSession::DatosSession(true));
-			//Ayudas::print_r($_SESSION);
-			/*$Plantilla = new NeuralPlantillasTwig;
+			$Plantilla = new NeuralPlantillasTwig;
 			echo $Plantilla->MostrarPlantilla('Central/Central.html', 'OUTLET');
-			*/
 		}
 	}

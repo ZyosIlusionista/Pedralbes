@@ -1,16 +1,28 @@
 <?php
 	class AyudaSession {
 		
+		/**
+		 * Key complemento adicional
+		 */
 		private static $Complemento = 'M4RC3LI74$3L14';
+		
+		/**
+		 * Tiempo de session en segundos
+		 */
 		private static $TiempoSession = 5100;
 		
-		
+		/**
+		 * Registra la session correspondiente
+		 */
 		public static function RegistrarSession($Nombre = false, $Usuario = false, $Fecha = false, $Hora = false, $Permisos = false) {
 			if($Nombre == true AND $Usuario == true AND $Fecha == true AND $Hora == true AND $Permisos == true) {
 				NeuralSesiones::AgregarLlave('Pedralbes', self::CodificacionSession($Nombre, $Usuario, $Fecha, $Hora, $Permisos));
 			}
 		}
 		
+		/**
+		 * Validacion de la session activa y sus permisos
+		 */
 		public static function ValidarSesionActiva() {
 			NeuralSesiones::Inicializacion();
 			if(isset($_SESSION['Pedralbes']) == true) {
@@ -32,6 +44,9 @@
 			}
 		}
 		
+		/**
+		 * regresa los datos basicos del usuario registrado
+		 */
 		public static function DatosSession($Valido = false) {
 			if($Valido == true) {
 				$Data = self::DecodificacionSession($_SESSION['Pedralbes']);
@@ -39,6 +54,9 @@
 			}
 		}
 		
+		/**
+		 * Valida los permisos de la session
+		 */
 		private static function ValidacionPermisos($Permisos = false) {
 			$Permisos = json_decode($Permisos, true);
 			$ModReWrite = SysNeuralNucleo::LeerURLModReWrite();
@@ -56,6 +74,9 @@
 			}
 		}
 		
+		/**
+		 * valida los parametros de la session para su registro
+		 */
 		private static function ValidacionParametros($Array = array()) {
 			$Data[] = ($Array['Session']['Tiempo'] == strtotime($Array['Informacion']['Fecha'].' '.$Array['Informacion']['Hora'])+self::$TiempoSession) ? true : false;
 			$Data[] = ($Array['Session']['Fecha'] == $Array['Informacion']['Fecha']) ? true : false;
@@ -68,12 +89,18 @@
 			return (isset($Error[0]) == true) ? false: true;
 		}
 		
+		/**
+		 * Decodifica los datos de la session
+		 */
 		private static function DecodificacionSession($Data = false) {
 			if($Data == true) {
 				return self::MatrizDeCodificacionParametros(self::MatrizDeCodificacionBase($Data));
 			}
 		}
 		
+		/**
+		 * codifica los datos de la session
+		 */
 		private static function CodificacionSession($Nombre = false, $Usuario = false, $Fecha = false, $Hora = false, $Permisos = false) {
 			return self::MatrizCodificacionBase(self::MatrizCodificacionParametros(self::MatrizSession($Nombre, $Usuario, $Fecha, $Hora, $Permisos)));
 		}
