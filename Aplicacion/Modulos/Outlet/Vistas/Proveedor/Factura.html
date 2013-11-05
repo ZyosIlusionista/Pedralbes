@@ -1,0 +1,45 @@
+{% extends 'Basica/Base.html' %}
+	
+	{% block Contenido %}
+		<div class="g12">
+			<h1>Nueva Factura Proveedor</h1>
+			<p>Ingreso de Nueva Suministrada por el Proveedor</p>
+			<a href="{{NeuralRutasApp.RutaURL}}Proveedor/Factura" class="btn small fr">Nueva Factura</a><br /><br />
+			<form action="#" method="POST" name="Form" id="Form">
+				<fieldset>
+					<label>Nuevo Proveedor</label>
+					<section>
+						<label for="text_field">Info Factura</label>
+						<div>
+							<span>Número Factura</span><br /> <input type="text" id="Numero" name="Numero" class="g3" placeholder="Número Factura">
+							<span>Fecha</span> <input id="Fecha" name="Fecha" type="text" class="date" /> 
+						</div>
+					</section>
+					<section>
+						<label for="text_field">Valores</label>
+						<div>
+							<input type="text" id="ValorNeto" name="ValorNeto" class="g3">
+							<input type="text" id="ValorIVA" name="ValorIVA" class="g3">
+							<input type="text" id="ValorTotal" name="ValorTotal" class="g3">
+						</div>
+					</section>
+					<section>
+						<div><button class="reset" type="reset">Restaurar</button><button class="submit" name="GuardarProveedor" value="Guardar">Guardar</button></div>
+					</section>
+				</fieldset>
+			</form>
+		</div>
+	{% endblock %}
+	
+	{% block Script %}
+		<script>
+			$(document).ready(function(){
+$("input[type='text']").change(function(){
+var suma = 0;
+suma = Number($("input[id='ValorNeto']").val());
+suma += Number($("input[id='ValorIVA']").val());
+$("#ValorTotal").attr('value', suma);
+});
+});
+		</script>
+	{% endblock %}
