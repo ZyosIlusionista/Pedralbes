@@ -152,7 +152,7 @@
 		public function ExecuteConsulta($BaseDatos = 'DEFAULT') {
 			
 			if(isset($this->ConstructorBase) AND isset($this->ConstructorBaseContar)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
+				$Conexion = (is_object($BaseDatos) == true) ? $BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
 				$Datos = $Conexion->fetchAll($this->ConstructorBase);
 				$ConsultaCantidad = $Conexion->prepare($this->ConstructorBaseContar[0]);
 			 	$ConsultaCantidad->execute();
@@ -161,13 +161,13 @@
 				return array_merge($Cantidad, $Datos);
 			}
 			elseif(isset($this->ConstructorBaseContar)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
+				$Conexion = (is_object($BaseDatos) == true) ? $BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
 				$Consulta = $Conexion->prepare($this->ConstructorBaseContar[0]);
 			 	$Consulta->execute();
 			 	return $Consulta->rowCount();
 			}
 			elseif(isset($this->ConstructorBase)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
+				$Conexion = (is_object($BaseDatos) == true) ? $BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
 				return $Conexion->fetchAll($this->ConstructorBase);
 			}
 		}
@@ -178,9 +178,9 @@
 		 * Utilizada para generar query de forma manual
 		**/
 		public function ExecuteQueryManual($BaseDatos = 'DEFAULT', $Query) {
-			$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
-				$Consulta = $Conexion->prepare($Query);
-			 	$Consulta->execute();
-			 	return $Consulta->fetchAll();
+			$Conexion = (is_object($BaseDatos) == true) ? $BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase($BaseDatos);
+			$Consulta = $Conexion->prepare($Query);
+			$Consulta->execute();
+			return $Consulta->fetchAll();
 		}
 	}

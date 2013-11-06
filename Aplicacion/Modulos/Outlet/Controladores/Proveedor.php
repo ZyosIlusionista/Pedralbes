@@ -1,19 +1,16 @@
 <?php
 	class Proveedor extends Controlador {
 		
-		const APP = 'OUTLET';
-		
 		function __Construct() {
 			parent::__Construct();
 			AyudaSession::ValidarSesionActiva();
 			$this->DatosSession = AyudaSession::DatosSession(true);
 		}
 		
-		public function Prueba() {
-			AyudaSession::RegistrarSession('alejandro', 'Alejo', date("Y-m-d"), date("H:i:s"), '{"Central":true, "Proveedor":true, "Caja":false}');
-			Ayudas::print_r($_SESSION);
-		}
-		
+		/**
+		 * Carga Informacion Basica
+		 * ####### PENDIENTE
+		 */
 		public function Index() {
 			
 			$Plantilla = new NeuralPlantillasTwig;
@@ -22,14 +19,27 @@
 			
 		}
 		
+		/**
+		 * formulario de ingreso de la factura del proveedor
+		 */
 		public function Factura() {
 			$Plantilla = new NeuralPlantillasTwig;
-			
+			$Plantilla->ParametrosEtiquetas('ListaProveedor', $this->Modelo->ListadoProveedores(true));
 			echo $Plantilla->MostrarPlantilla('Proveedor/Factura.html', AppAyuda::APP, AppAyuda::CACHE);
 		}
 		
-		
-		
+		/**
+		 * Genera el proceso de guardar el consecutivo de la factura
+		 */
+		public function ProcesarFactura() {
+			if(isset($_POST) == true AND isset($_POST['GuardarFactura']) == true AND $_POST['GuardarFactura'] == 'Guardar') {
+				Ayudas::print_r($_POST);
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 		
 		
 		

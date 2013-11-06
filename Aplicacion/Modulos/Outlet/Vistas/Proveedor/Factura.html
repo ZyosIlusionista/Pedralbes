@@ -4,10 +4,25 @@
 		<div class="g12">
 			<h1>Nueva Factura Proveedor</h1>
 			<p>Ingreso de Nueva Suministrada por el Proveedor</p>
-			<a href="{{NeuralRutasApp.RutaURL}}Proveedor/Factura" class="btn small fr">Nueva Factura</a><br /><br />
-			<form action="#" method="POST" name="Form" id="Form">
+			<a href="{{NeuralRutasApp.RutaURL}}Proveedor/Factura" class="btn small fr">Nueva Factura Proveedor</a><br /><br />
+			<form action="{{NeuralRutasApp.RutaURL}}Proveedor/ProcesarFactura" method="POST" name="Form" id="Form">
 				<fieldset>
-					<label>Nuevo Proveedor</label>
+					<label>Factura Proveedor</label>
+					<section>
+						<label for="text_field">Proveedor</label>
+						<div>
+							<select name="Proveedor" id="Proveedor">
+								<option value="">Escoja Un Proveedor</option>
+								{% if ListaProveedor|length>=1 %}
+									{% for Valor in ListaProveedor %}
+										<option value="{{Valor.Id}}">{{Valor.Nombre}}</option>
+									{% endfor %}
+								{% else %}
+								
+								{% endif %}
+							</select>
+						</div>
+					</section>
 					<section>
 						<label for="text_field">Info Factura</label>
 						<div>
@@ -16,15 +31,15 @@
 						</div>
 					</section>
 					<section>
-						<label for="text_field">Valores</label>
+						<label for="text_field">Valor de la Factura</label>
 						<div>
-							<input type="text" id="ValorNeto" name="ValorNeto" class="g3">
-							<input type="text" id="ValorIVA" name="ValorIVA" class="g3">
-							<input type="text" id="ValorTotal" name="ValorTotal" class="g3">
+							<input type="text" id="ValorNeto" name="ValorNeto" class="g3" placeholder="Valor Neto" />
+							<input type="text" id="ValorIVA" name="ValorIVA" class="g3" placeholder="Valor del IVA" />
+							<span>Valor con IVA</span><input type="text" id="ValorTotal" name="ValorTotal" class="g3" />
 						</div>
 					</section>
 					<section>
-						<div><button class="reset" type="reset">Restaurar</button><button class="submit" name="GuardarProveedor" value="Guardar">Guardar</button></div>
+						<div><button class="reset" type="reset">Restaurar</button><button class="submit" name="GuardarFactura" value="Guardar">Guardar</button></div>
 					</section>
 				</fieldset>
 			</form>
@@ -32,14 +47,15 @@
 	{% endblock %}
 	
 	{% block Script %}
+		
 		<script>
-			$(document).ready(function(){
-$("input[type='text']").change(function(){
-var suma = 0;
-suma = Number($("input[id='ValorNeto']").val());
-suma += Number($("input[id='ValorIVA']").val());
-$("#ValorTotal").attr('value', suma);
-});
-});
+			$(document).ready(function() {
+				$("input[type='text']").keyup(function() {
+					var suma = 0;
+					suma = Number($("input[id='ValorNeto']").val());
+					suma += Number($("input[id='ValorIVA']").val());
+					$("#ValorTotal").attr('value', suma);
+				});
+			});
 		</script>
 	{% endblock %}
