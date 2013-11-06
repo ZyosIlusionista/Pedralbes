@@ -47,7 +47,14 @@
 	{% endblock %}
 	
 	{% block Script %}
-		
+		<style>
+			.error {
+				font-family: verdana;
+				font-size: 10px;
+				font-weight: bold;
+				color: red;
+			}
+		</style>
 		<script>
 			$(document).ready(function() {
 				$("input[type='text']").keyup(function() {
@@ -58,4 +65,5 @@
 				});
 			});
 		</script>
+		{{Script|raw}}
 	{% endblock %}

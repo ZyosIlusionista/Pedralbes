@@ -23,7 +23,18 @@
 		 * formulario de ingreso de la factura del proveedor
 		 */
 		public function Factura() {
+			$Validacion = new NeuralJQueryValidacionFormulario;
+			$Validacion->Requerido('Proveedor', 'Seleccione el Proveedor Correspondiente');
+			$Validacion->Requerido('Numero', 'Ingrese el Numero de la Factura del Proveedor');
+			$Validacion->Requerido('Fecha', 'Selecione la Fecha de la Compra');
+			$Validacion->Requerido('ValorNeto', 'Ingrese el Valor Neto de la Compra');
+			$Validacion->Numero('ValorNeto', 'Solo Puede Ingresar Datos Numericos');
+			$Validacion->Requerido('ValorIVA', 'Ingrese el Valor del IVA de la Compra');
+			$Validacion->Numero('ValorIVA', 'Solo Puede Ingresar Datos Numericos');
+			$Script[] = $Validacion->MostrarValidacion('Form');
+			
 			$Plantilla = new NeuralPlantillasTwig;
+			$Plantilla->ParametrosEtiquetas('Script', NeuralScriptAdministrador::OrganizarScript(false, $Script, AppAyuda::APP));
 			$Plantilla->ParametrosEtiquetas('ListaProveedor', $this->Modelo->ListadoProveedores(true));
 			echo $Plantilla->MostrarPlantilla('Proveedor/Factura.html', AppAyuda::APP, AppAyuda::CACHE);
 		}
