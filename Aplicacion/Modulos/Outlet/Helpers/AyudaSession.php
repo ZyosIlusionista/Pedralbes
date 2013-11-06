@@ -9,7 +9,7 @@
 		/**
 		 * Tiempo de session en segundos
 		 */
-		private static $TiempoSession = 5100;
+		private static $TiempoSession = 7200;
 		
 		/**
 		 * Registra la session correspondiente

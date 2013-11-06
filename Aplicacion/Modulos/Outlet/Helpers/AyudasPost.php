@@ -249,8 +249,9 @@
 		 * */
 		private static function SupresorSQL($Datos) {
 			
-			$Cadena = str_ireplace('SELECT', '', $Datos);
-			$Cadena = str_ireplace('COPY', '', $Cadena);
+			//$Cadena = str_ireplace('SELECT', '', $Datos);
+			//$Cadena = str_ireplace('COPY', '', $Cadena);
+			$Cadena = str_ireplace('COPY', '', $Datos);
 			$Cadena = str_ireplace('DELETE', '', $Cadena);
 			$Cadena = str_ireplace('DROP', '', $Cadena);
 			$Cadena = str_ireplace('DUMP', '', $Cadena);
@@ -268,13 +269,13 @@
 			$Cadena = str_ireplace('=', '', $Cadena);
 			$Cadena = str_ireplace('&', '', $Cadena);
 			$Cadena = str_ireplace('INSERT ', '', $Cadena);
-			$Cadena = str_ireplace('INTO', '', $Cadena);
+			//$Cadena = str_ireplace('INTO', '', $Cadena);
 			$Cadena = str_ireplace('VALUES', '', $Cadena);
 			$Cadena = str_ireplace('FROM', '', $Cadena);
-			$Cadena = str_ireplace('LEFT', '', $Cadena);
+			//$Cadena = str_ireplace('LEFT', '', $Cadena);
 			$Cadena = str_ireplace('JOIN', '', $Cadena);
 			$Cadena = str_ireplace('WHERE', '', $Cadena);
-			$Cadena = str_ireplace('LIMIT', '', $Cadena);
+			//$Cadena = str_ireplace('LIMIT', '', $Cadena);
 			$Cadena = str_ireplace('ORDER BY', '', $Cadena);
 			//$Cadena = str_ireplace('AND', '', $Cadena);
 			//$Cadena = str_ireplace('DESC', '', $Cadena);
@@ -287,7 +288,7 @@
 			$Cadena = str_ireplace('#', '', $Cadena);
 			$Cadena = str_ireplace('$', '', $Cadena);
 			$Cadena = str_ireplace('&', '', $Cadena);
-			$Cadena = str_ireplace('/', '', $Cadena);
+			//$Cadena = str_ireplace('/', '', $Cadena);
 			$Cadena = str_ireplace('(', '', $Cadena);
 			$Cadena = str_ireplace(')', '', $Cadena);
 			$Cadena = str_ireplace('\'', '', $Cadena);
@@ -305,7 +306,6 @@
 			$Cadena = str_ireplace('}', '', $Cadena);
 			$Cadena = str_ireplace('^', '', $Cadena);
 			$Cadena = str_ireplace('`', '', $Cadena);
-			$Cadena = str_ireplace('®', '', $Cadena);
 			$Cadena = addslashes($Cadena);
 			return $Cadena;
 		}

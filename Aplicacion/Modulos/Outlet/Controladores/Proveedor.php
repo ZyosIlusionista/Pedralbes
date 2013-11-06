@@ -44,7 +44,17 @@
 		 */
 		public function ProcesarFactura() {
 			if(isset($_POST) == true AND isset($_POST['GuardarFactura']) == true AND $_POST['GuardarFactura'] == 'Guardar') {
-				Ayudas::print_r($_POST);
+				if(AyudasPost::DatosVacios($_POST) == false) {
+					unset($_POST['GuardarFactura']);
+					$DatosPost = AyudasPost::FormatoMayus(AyudasPost::FormatoEspacio(AyudasPost::LimpiarInyeccionSQL($_POST)));
+					$IdFactura = $this->Modelo->ProcesarNuevaFactura($DatosPost, $this->DatosSession['Usuario'], date("Y-m-d"), $Hora = date("H:i:s"));
+					header("Location: ".NeuralRutasApp::RutaURL('Proveedor/DetalleFactura/'.AyudasConversorHexAscii::ASCII_HEX($IdFactura)));
+					exit();
+				}
+				else {
+					$Plantilla = new NeuralPlantillasTwig;
+					echo $Plantilla->MostrarPlantilla('Proveedor/Mensajes/FormularioVacio.html', AppAyuda::APP, AppAyuda::CACHE);
+				}
 			}
 			else {
 				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
@@ -52,7 +62,27 @@
 			}
 		}
 		
-		
+		/**
+		 * Genera el Proceso para Agregar 
+		 */
+		public function DetalleFactura($Id = false) {
+			if($Id == true AND is_numeric(AyudasConversorHexAscii::HEX_ASCII($Id)) == true) {
+				$DatosFactura = $this->Modelo->ConsultarIdFactura(AyudasConversorHexAscii::HEX_ASCII($Id));
+				if($DatosFactura['Cantidad'] == 1) {
+					$Plantilla = new NeuralPlantillasTwig;
+					$Plantilla->ParametrosEtiquetas('DatosFactura', $DatosFactura[0]);
+					$Plantilla->ParametrosEtiquetas('ListadoCategoria', $this->Modelo->ListadoCategoria());
+					echo $Plantilla->MostrarPlantilla('Proveedor/DetalleFactura.html', AppAyuda::APP, AppAyuda::CACHE);
+				}
+				else {
+					//Factura no valida
+				}
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 		
 		
 		

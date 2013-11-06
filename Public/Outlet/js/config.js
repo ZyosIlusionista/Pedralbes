@@ -79,15 +79,15 @@ if($.fn.wl_Date) $.fn.wl_Date.defaults = {
 	mousewheel: true,
 	
 	//some datepicker standards
-	dayNames : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-	dayNamesMin : ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-	dayNamesShort : ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	dayNames : ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+	dayNamesMin : ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+	dayNamesShort : ['Dom', 'Lun', 'Mar', 'Mier', 'Jue', 'Vier', 'Sab'],
 	firstDay: 0,
-	nextText: 'next',
-	prevText: 'prev',
-	currentText: 'Today',
-	showWeek: true,
-	dateFormat: 'mm/dd/yy'
+	nextText: 'Proximo',
+	prevText: 'Anterior',
+	currentText: 'Hoy',
+	showWeek: false,
+	dateFormat: 'yy/mm/dd'
 };
 
 

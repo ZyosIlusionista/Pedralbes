@@ -1,0 +1,43 @@
+{% extends 'Basica/Base.html' %}
+	
+	{% block Contenido %}
+		<div class="g12">
+			<h1>Nueva Factura Proveedor</h1>
+			<p>Ingreso de Nueva Suministrada por el Proveedor</p>
+			<form action="#" method="POST" name="Codigo" id="Codigo">
+				<fieldset>
+					<label>Detalle de Factura Proveedor {{DatosFactura.Numero}}</label>
+					<section>
+						<label for="text_field">Código</label>
+						<div>
+							<input type="text" id="Referencia" name="Referencia" class="g3" placeholder="Código de Producto" /> 
+							<button class="submit" name="GuardarFactura" value="Guardar">Guardar</button>
+						</div>
+					</section>
+				</fieldset>
+			</form>
+			
+			<form action="#" method="POST" name="Producto" id="Producto">
+				<fieldset>
+					<label>Detalle de Factura Proveedor {{DatosFactura.Numero}}</label>
+					<section>
+						<label for="text_field">Producto</label>
+						<div>
+							<select>
+								<option value="">Escoja Una Categoria</option>
+								{% if ListadoCategoria|length>=1 %}
+									{% for Valor in ListadoCategoria %}
+										<option value="{{Valor.Categoria}}">{{Valor.Categoria}}</option>
+									{% endfor %}
+								{% endif %}
+							</select>
+						</div>
+					</section>
+				</fieldset>
+			</form>
+		</div>
+	{% endblock %}
+	
+	{% block Script %}
+		
+	{% endblock %}

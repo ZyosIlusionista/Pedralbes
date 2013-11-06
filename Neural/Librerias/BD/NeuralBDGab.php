@@ -23,7 +23,7 @@
 		 * @param $Tabla: Tabla donde se realizara el procedimiento
 		**/
 		public function SeleccionarDestino($BaseDatos = 'DEFAULT', $Tabla) {
-			$this->BaseDatos = trim(mb_strtoupper($BaseDatos));
+			$this->BaseDatos = $BaseDatos;
 			$this->Tabla = trim($Tabla);
 		}
 		
@@ -54,7 +54,7 @@
 		**/
 		public function InsertarDatos() {
 			if(isset($this->BaseDatos)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($this->BaseDatos);
+				$Conexion = (is_object($this->BaseDatos) == true) ? $this->BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase(trim(strtoupper($this->BaseDatos)));
 				$Conexion->insert($this->Tabla, $this->ObtenerDatos);
 			}
 		}
@@ -66,7 +66,7 @@
 		**/
 		public function ActualizarDatos() {
 			if(isset($this->BaseDatos)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($this->BaseDatos);
+				$Conexion = (is_object($this->BaseDatos) == true) ? $this->BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase(trim(strtoupper($this->BaseDatos)));
 				$Conexion->update($this->Tabla, $this->ObtenerDatos, $this->ObtenerCondicion);
 			}
 		}
@@ -78,7 +78,7 @@
 		**/
 		public function EliminarDatos() {
 			if(isset($this->BaseDatos)) {
-				$Conexion = NeuralConexionBaseDatos::ObtenerConexionBase($this->BaseDatos);
+				$Conexion = (is_object($this->BaseDatos) == true) ? $this->BaseDatos : NeuralConexionBaseDatos::ObtenerConexionBase(trim(strtoupper($this->BaseDatos)));
 				$Conexion->delete($this->Tabla, $this->ObtenerCondicion);
 			}
 		}
