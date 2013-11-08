@@ -98,6 +98,16 @@
 			return $Consulta->ExecuteConsulta($this->Conexion);
 		}
 		
+		public function ListarSubCategoriasSelectDependiente($Categoria) {
+			$Consulta = new NeuralBDConsultas;
+			$Consulta->CrearConsulta('inventario');
+			$Consulta->AgregarColumnas('Referencia, SubCategoria');
+			$Consulta->AgregarCondicion("Categoria = '$Categoria'");
+			$Consulta->AgregarOrdenar('SubCategoria', 'ASC');
+			$Consulta->PrepararQuery();
+			return $Consulta->ExecuteConsulta($this->Conexion);
+		}
+		
 		private function ListarColumnasTabla($Tabla = false) {
 			if($Tabla == true) {
 				$Consulta = new NeuralBDConsultas;

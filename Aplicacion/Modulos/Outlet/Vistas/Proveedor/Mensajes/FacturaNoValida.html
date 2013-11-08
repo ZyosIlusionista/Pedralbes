@@ -1,0 +1,10 @@
+{% extends 'Basica/Base.html' %}
+	
+	{% block Contenido %}
+		<div class="g12">
+			<div class="alert warning">Factura No Valida</div>
+			<h1>Factura No Valida</h1>
+			<p>Valide la Información ingresada ya que actualmente esta factura no es valida.</p>
+			<a href="{{NeuralRutasApp.RutaURL}}Proveedor/Factura" class="btn small fr">Nueva Factura Proveedor</a><br /><br />
+		</div>
+	{% endblock %}

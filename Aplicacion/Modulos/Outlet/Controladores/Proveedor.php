@@ -69,13 +69,26 @@
 			if($Id == true AND is_numeric(AyudasConversorHexAscii::HEX_ASCII($Id)) == true) {
 				$DatosFactura = $this->Modelo->ConsultarIdFactura(AyudasConversorHexAscii::HEX_ASCII($Id));
 				if($DatosFactura['Cantidad'] == 1) {
+					$ValidCodigo = new NeuralJQueryValidacionFormulario;
+					$ValidCodigo->Requerido('Referencia', 'Ingrese la Referencia Correspondiente');
+					$ValidCodigo->Numero('Referencia', 'Debe Ingresar Códigos Númericos');
+					$ValidProducto = new NeuralJQueryValidacionFormulario;
+					$ValidProducto->Requerido('Categoria', 'Seleccione la Categoria Correspondiente');
+					$ValidProducto->Requerido('SubCategoria', 'Selecciona Una SubCategoria');
+					
+					$Script[] = $ValidCodigo->MostrarValidacion('Codigo');
+					$Script[] = $ValidProducto->MostrarValidacion('Producto');
+					$Script[] = NeuralJQueryAjax::SelectCargarPeticionPOST('Categoria', 'SubCategoria', NeuralRutasApp::RutaURL('Proveedor/SelectDependiente'), 'Categoria');
+					
 					$Plantilla = new NeuralPlantillasTwig;
 					$Plantilla->ParametrosEtiquetas('DatosFactura', $DatosFactura[0]);
 					$Plantilla->ParametrosEtiquetas('ListadoCategoria', $this->Modelo->ListadoCategoria());
+					$Plantilla->ParametrosEtiquetas('Script', NeuralScriptAdministrador::OrganizarScript(false, $Script, AppAyuda::APP));
 					echo $Plantilla->MostrarPlantilla('Proveedor/DetalleFactura.html', AppAyuda::APP, AppAyuda::CACHE);
 				}
 				else {
-					//Factura no valida
+					$Plantilla = new NeuralPlantillasTwig;
+					echo $Plantilla->MostrarPlantilla('Proveedor/Mensajes/FacturaNoValida.html', AppAyuda::APP, AppAyuda::CACHE);
 				}
 			}
 			else {
@@ -85,6 +98,27 @@
 		}
 		
 		
+		
+		
+		
+		
+		
+		
+		/**
+		 * Genera el proceso del select dependiente del formulario de Detalle de factura
+		 */
+		public function SelectDependiente() {
+			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
+				$DatosPost = AyudasPost::FormatoEspacio(AyudasPost::FormatoMayus(AyudasPost::LimpiarInyeccionSQL($_POST)));
+				$Plantilla = new NeuralPlantillasTwig;
+				$Plantilla->ParametrosEtiquetas('Datos', $this->Modelo->ListarSubCategoriasSelectDependiente($DatosPost['Categoria']));
+				echo $Plantilla->MostrarPlantilla('Proveedor/Ajax/Select.html', AppAyuda::APP, AppAyuda::CACHE);
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 		
 		
 		

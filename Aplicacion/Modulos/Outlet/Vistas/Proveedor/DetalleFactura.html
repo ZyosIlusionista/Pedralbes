@@ -23,13 +23,17 @@
 					<section>
 						<label for="text_field">Producto</label>
 						<div>
-							<select>
+							<select name="Categoria" id="Categoria">
 								<option value="">Escoja Una Categoria</option>
 								{% if ListadoCategoria|length>=1 %}
 									{% for Valor in ListadoCategoria %}
 										<option value="{{Valor.Categoria}}">{{Valor.Categoria}}</option>
 									{% endfor %}
 								{% endif %}
+							</select>
+							
+							<select name="SubCategoria" id="SubCategoria">
+								<option value="">Escoja Una SubCategoria</option>
 							</select>
 						</div>
 					</section>
@@ -39,5 +43,13 @@
 	{% endblock %}
 	
 	{% block Script %}
-		
+		<style>
+			.error {
+				font-family: verdana;
+				font-weight: bold;
+				font-size: 10px;
+				color: red;
+			}
+		</style>
+		{{Script|raw}}
 	{% endblock %}

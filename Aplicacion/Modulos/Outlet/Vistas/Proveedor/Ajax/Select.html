@@ -1,0 +1,8 @@
+{% if Datos|length>=1 %}
+	<option value="">Escoja Una SubCategoria</option>
+	{% for Valor in Datos %}
+		<option value="{{Valor.Referencia}}">{{Valor.SubCategoria}}</option>
+	{% endfor %}
+{% else %}
+	<option value="">Escoja Una SubCategoria</option>
+{% endif %}
