@@ -7,6 +7,20 @@
 		}
 		
 		/**
+		 * Genera una lista de las columnas de la tabla
+		 */
+		private function ListarColumnasTabla($Tabla = false) {
+			if($Tabla == true) {
+				$Consulta = new NeuralBDConsultas;
+				$Data = $Consulta->ExecuteQueryManual($this->Conexion, "DESCRIBE $Tabla");
+				foreach ($Data AS $Consecutivo => $Valor) {
+					$Lista[] = $Valor['Field'];
+				}
+				return implode(', ', $Lista);
+			}
+		}
+		
+		/**
 		 * Guarda los datos del Nuevo Proveedor
 		 */
 		public function GuardarNuevoProveedor($Array = array(), $Usuario) {
@@ -88,6 +102,9 @@
 			return $Consulta->ExecuteConsulta($this->Conexion);
 		}
 		
+		/**
+		 * Genera un listado de las categorias del inventario
+		 */
 		public function ListadoCategoria() {
 			$Consulta = new NeuralBDConsultas;
 			$Consulta->CrearConsulta('inventario');
@@ -98,6 +115,9 @@
 			return $Consulta->ExecuteConsulta($this->Conexion);
 		}
 		
+		/**
+		 * Genera una sub lista de categorias del inventario
+		 */
 		public function ListarSubCategoriasSelectDependiente($Categoria) {
 			$Consulta = new NeuralBDConsultas;
 			$Consulta->CrearConsulta('inventario');
@@ -108,14 +128,40 @@
 			return $Consulta->ExecuteConsulta($this->Conexion);
 		}
 		
-		private function ListarColumnasTabla($Tabla = false) {
-			if($Tabla == true) {
-				$Consulta = new NeuralBDConsultas;
-				$Data = $Consulta->ExecuteQueryManual($this->Conexion, "DESCRIBE $Tabla");
-				foreach ($Data AS $Consecutivo => $Valor) {
-					$Lista[] = $Valor['Field'];
-				}
-				return implode(', ', $Lista);
+		public function ConsultarReferencia($Referencia = false) {
+			$Consulta = new NeuralBDConsultas;
+			$Consulta->CrearConsulta('inventario');
+			$Consulta->AgregarColumnas(self::ListarColumnasTabla('inventario'));
+			$Consulta->AgregarCondicion("Referencia = '$Referencia'");
+			$Consulta->PrepararCantidadDatos('Cantidad');
+			$Consulta->PrepararQuery();
+			return $Consulta->ExecuteConsulta($this->Conexion);
+		}
+		
+		public function MostrarListaDatosFactura($Factura = false) {
+			$Consulta = new NeuralBDConsultas;
+			$Consulta->CrearConsulta('factura_proveedor_temporal');
+			$Consulta->AgregarColumnas(self::ListarColumnasTabla('factura_proveedor_temporal'));
+			$Consulta->AgregarCondicion("IdFactura = '$Factura'");
+			$Consulta->AgregarCondicion("Estado != 'ELIMINADO'");
+			$Consulta->AgregarOrdenar('Fecha ASC, Hora', 'ASC');
+			$Consulta->PrepararQuery();
+			return $Consulta->ExecuteConsulta($this->Conexion);
+		}
+		
+		public function GuardarDetalleFactura($Factura, $Cantidad, $Array, $Usuario) {
+			$SQL = new NeuralBDGab;
+			$SQL->SeleccionarDestino($this->Conexion, 'factura_proveedor_temporal');
+			foreach ($Array AS $Columna => $Valor) {
+				$SQL->AgregarSentencia($Columna, $Valor);
 			}
+			$SQL->AgregarSentencia('IdFactura', $Factura);
+			$SQL->AgregarSentencia('Cantidad', $Cantidad);
+			$SQL->AgregarSentencia('Estado', 'PENDIENTE');
+			$SQL->AgregarSentencia('Accion', 'ACTUALIZAR');
+			$SQL->AgregarSentencia('Usuario', $Usuario);
+			$SQL->AgregarSentencia('Fecha', date("Y-m-d"));
+			$SQL->AgregarSentencia('Hora', date("H:i:s"));
+			$SQL->InsertarDatos();
 		}
 	}

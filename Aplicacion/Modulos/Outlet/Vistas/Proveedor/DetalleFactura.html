@@ -3,7 +3,11 @@
 	{% block Contenido %}
 		<div class="g12">
 			<h1>Nueva Factura Proveedor</h1>
-			<p>Ingreso de Nueva Suministrada por el Proveedor</p>
+			<p>
+				Ingreso de Nueva Suministrada por el Proveedor
+				<a class="btn small fr" href="#" id="BusquedaCodigo" style="display: none;">Busqueda Por Código</a>
+				<a class="btn small fr" href="#" id="BusquedaProducto" style="display: block;">Busqueda Por Producto</a>
+			</p>
 			<form action="#" method="POST" name="Codigo" id="Codigo">
 				<fieldset>
 					<label>Detalle de Factura Proveedor {{DatosFactura.Numero}}</label>
@@ -17,7 +21,7 @@
 				</fieldset>
 			</form>
 			
-			<form action="#" method="POST" name="Producto" id="Producto">
+			<form action="#" method="POST" name="Producto" id="Producto" style="display: none;">
 				<fieldset>
 					<label>Detalle de Factura Proveedor {{DatosFactura.Numero}}</label>
 					<section>
@@ -39,6 +43,9 @@
 					</section>
 				</fieldset>
 			</form>
+			
+			<div id="CargarDatos">Carga de Datos Disponibles</div>
+			
 		</div>
 	{% endblock %}
 	
@@ -52,4 +59,32 @@
 			}
 		</style>
 		{{Script|raw}}
+		<script>
+			$(document).ready(function() {
+				$("#BusquedaProducto").click(function() {
+					$("#BusquedaProducto").fadeIn("slow", function() {
+						$("#BusquedaProducto").css("display", "none");
+						$("#BusquedaCodigo").css("display", "block");
+						$("#Codigo").css("display", "none");
+						$("#Producto").fadeIn("slow", function() {
+							$("#Producto").css("display", "block");
+						});
+					});
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function() {
+				$("#BusquedaCodigo").click(function() {
+					$("#BusquedaCodigo").fadeIn("slow", function() {
+						$("#BusquedaCodigo").css("display", "none");
+						$("#BusquedaProducto").css("display", "block");
+						$("#Producto").css("display", "none");
+						$("#Codigo").fadeIn("slow", function() {
+							$("#Codigo").css("display", "block");
+						});
+					})
+				});
+			});
+		</script>
 	{% endblock %}

@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>.:: Agregar Producto Código ::.</title>
+		<script src="{{NeuralRutasApp.RutaJs}}jquery.min.js"></script>
+	</head>
+	<body id="CargarDatos">
+		<hr />
+		<form action="#" method="POST" name="CantidadCodigo" id="CantidadCodigo" novalidate="novalidate">
+			<fieldset>
+				<label>Código: {{Data.Referencia}} Producto: {{Data.SubCategoria}}</label>
+				<section>
+					<label for="text_field">Código</label>
+					<div>
+						<input type="text" id="Cantidad" name="Cantidad" class="g3" placeholder="Cantidad" />
+						<button class="submit" name="GuardarFactura" value="Guardar">Guardar</button> 
+					</div>
+					<input type="hidden" name="Inventario" value="{{Data|json}}" />
+				</section>
+			</fieldset>
+		</form>
+		<table class="documentation">
+			<thead>
+				<tr>
+					<th>Titulo</th>
+					<th>Valor</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for Nombre, Valor in Data %}
+					<tr>
+						<th>{{Nombre}}</th>
+						<td>{{Valor}}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{{Script|raw}}	
+	</body>
+</html>

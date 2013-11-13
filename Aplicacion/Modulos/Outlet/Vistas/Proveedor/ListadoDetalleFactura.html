@@ -1,0 +1,32 @@
+	{% if Consulta|length>=1 %}
+		<table class="documentation">
+			<thead>
+				<tr>
+					<th>Referencia</th>
+					<th>Nombre</th>
+					<th>Cantidad</th>
+					<th>Acción</th>
+					<th>Usuario</th>
+					<th>Fecha</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for Data in Consulta %}
+					<tr>
+						<td>{{Data.Referencia}}</td>
+						<td>{{Data.SubCategoria}}</td>
+						<td>{{Data.Cantidad}}</td>
+						<td>{{Data.Accion}}</td>
+						<td>{{Data.Usuario}}</td>
+						<td>{{Data.Fecha}}</td>
+						<td><img src="{{NeuralRutasApp.RutaImagenes}}editar.png" title="Editar {{Data.SubCategoria}}" /></td>
+						<td><img src="{{NeuralRutasApp.RutaImagenes}}borrar.png" title="Borrar {{Data.SubCategoria}}" /></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		No Hay Datos Ingresados
+	{% endif %}

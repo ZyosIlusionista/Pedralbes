@@ -71,7 +71,9 @@
 				if($DatosFactura['Cantidad'] == 1) {
 					$ValidCodigo = new NeuralJQueryValidacionFormulario;
 					$ValidCodigo->Requerido('Referencia', 'Ingrese la Referencia Correspondiente');
-					$ValidCodigo->Numero('Referencia', 'Debe Ingresar CÃ³digos NÃºmericos');
+					$ValidCodigo->Numero('Referencia', 'Debe Ingresar Códigos Númericos');
+					$ValidCodigo->SubmitHandler(NeuralJQueryAjax::EnviarFormularioPOST('Codigo', 'CargarDatos', NeuralRutasApp::RutaURL('Proveedor/AgregarProductoFactura/'.$Id), true, AppAyuda::APP));
+					
 					$ValidProducto = new NeuralJQueryValidacionFormulario;
 					$ValidProducto->Requerido('Categoria', 'Seleccione la Categoria Correspondiente');
 					$ValidProducto->Requerido('SubCategoria', 'Selecciona Una SubCategoria');
@@ -79,6 +81,7 @@
 					$Script[] = $ValidCodigo->MostrarValidacion('Codigo');
 					$Script[] = $ValidProducto->MostrarValidacion('Producto');
 					$Script[] = NeuralJQueryAjax::SelectCargarPeticionPOST('Categoria', 'SubCategoria', NeuralRutasApp::RutaURL('Proveedor/SelectDependiente'), 'Categoria');
+					$Script[] = NeuralJQueryAjax::CargarContenidoAutomatico('CargarDatos', NeuralRutasApp::RutaURL('Proveedor/MostrarListaDatosFactura/'.$Id));
 					
 					$Plantilla = new NeuralPlantillasTwig;
 					$Plantilla->ParametrosEtiquetas('DatosFactura', $DatosFactura[0]);
@@ -97,12 +100,79 @@
 			}
 		}
 		
+		/**
+		 * Mustra Formulario para agregar cantidad de productos
+		 */
+		public function AgregarProductoFactura($Factura = false) {
+			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
+				if(AyudasPost::DatosVacios($_POST) == false AND isset($_POST['GuardarFactura']) == true AND $_POST['GuardarFactura'] == 'Guardar') {
+					$DatosPost = AyudasPost::FormatoEspacio(AyudasPost::LimpiarInyeccionSQL($_POST));
+					if(is_numeric($DatosPost['Referencia']) == true) {
+						$Consulta = $this->Modelo->ConsultarReferencia($DatosPost['Referencia']);
+						if($Consulta['Cantidad'] == 1) {
+							$Validar = new NeuralJQueryValidacionFormulario;
+							$Validar->Requerido('Cantidad', 'Ingrese la Cantidad de Productos');
+							$Validar->Numero('Cantidad', 'Debe Ingresar Datos Númericos');
+							$Validar->SubmitHandler(NeuralJQueryAjax::EnviarFormularioPOST('CantidadCodigo', 'CargarDatos', NeuralRutasApp::RutaURL('Proveedor/ProcesarAgregarProductoFactura/'.$Factura), true, AppAyuda::APP));
+							$Script[] = $Validar->MostrarValidacion('CantidadCodigo');
+							
+							$Plantilla = new NeuralPlantillasTwig;
+							$Plantilla->ParametrosEtiquetas('Data', $Consulta[0]);
+							$Plantilla->ParametrosEtiquetas('Script', NeuralScriptAdministrador::OrganizarScript(false, $Script, AppAyuda::APP));
+							$Plantilla->AgregarFuncionAnonima('json', function($Array) {
+								foreach ($Array AS $Nombre => $Valor) {
+									if($Nombre <> 'Id' AND $Nombre <> 'Estado' AND $Nombre <> 'Cantidad' AND $Nombre <> 'ActivoWeb') {
+										$Lista[$Nombre] = trim($Valor);
+									}
+								}
+								return json_encode($Lista);
+							});
+							echo $Plantilla->MostrarPlantilla('Proveedor/Formulario/FormularioCodigo.html', AppAyuda::APP, AppAyuda::CACHE);
+						}
+						else {
+							$Plantilla = new NeuralPlantillasTwig;
+							echo $Plantilla->MostrarPlantilla('Proveedor/Mensajes/NoExisteRegistro.html', AppAyuda::APP, AppAyuda::CACHE);
+						}
+					}
+					else {
+						$Plantilla = new NeuralPlantillasTwig;
+						echo $Plantilla->MostrarPlantilla('Proveedor/Mensajes/noNumerico.html', AppAyuda::APP, AppAyuda::CACHE);
+					}
+				}
+				else {
+					$Plantilla = new NeuralPlantillasTwig;
+					echo $Plantilla->MostrarPlantilla('Proveedor/Mensajes/FormularioVacio.html', AppAyuda::APP, AppAyuda::CACHE);
+				}
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 		
+		public function ProcesarAgregarProductoFactura($Factura = false) {
+			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
+				unset($_POST['GuardarFactura']);
+				$DatosPost = AyudasPost::FormatoEspacio($_POST);
+				$DatosUsuario = AyudaSession::DatosSession(true);
+				$this->Modelo->GuardarDetalleFactura(trim(AyudasConversorHexAscii::HEX_ASCII($Factura)), $DatosPost['Cantidad'], json_decode($DatosPost['Inventario'], true), $DatosUsuario['Usuario']);
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor/MostrarListaDatosFactura/'.$Factura));
+				exit();
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 		
-		
-		
-		
-		
+		/**
+		 * Genera el listado que se procesara para actualizar el inventario
+		 */
+		public function MostrarListaDatosFactura($Factura = false) {
+			$Plantilla = new NeuralPlantillasTwig;
+			$Plantilla->ParametrosEtiquetas('Consulta', $this->Modelo->MostrarListaDatosFactura(AyudasConversorHexAscii::HEX_ASCII($Factura)));
+			echo $Plantilla->MostrarPlantilla('Proveedor/ListadoDetalleFactura.html', AppAyuda::APP, AppAyuda::CACHE);
+		}
 		
 		/**
 		 * Genera el proceso del select dependiente del formulario de Detalle de factura
@@ -119,16 +189,6 @@
 				exit();
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		/**
 		 * Genera el formulario de un Nuevo Proveedor
