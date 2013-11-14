@@ -2,17 +2,20 @@
 	
 	{% block Contenido %}
 		<div class="g12">
-			<h1>Facturación<span><a href="doc-form.html" class="small">&nbsp&nbsp&nbsp Creación factura electrónica Pedralbes</a></span></h1>	
+			<h2>Facturación<span><a href="doc-form.html" class="small">&nbsp&nbsp&nbsp Creación factura electrónica Pedralbes</a></span></h2>	
 		</div>
-		<div><br /><br /><br /><br /><br /><br />
+		<div><br /><br /><br /><br />
 		<form action="#" method="POST" name="Form" id="Form">
 			<fieldset>
 				<label>Nueva Factura</label>
 				<section>
-					<label for="text_field">Datos Cliente</label>	
+					<label for="text_field">Datos Cliente</label>
 					<div>
-						<input type="text" id="Cedula" name="Cedula" class="g3" placeholder="# Identificación"/><br /><br /><br />
+						<input type="text" id="Cedula" name="Cedula" class="g3" placeholder="# Identificación"/>
+						<button class="btn pink">Pedir Datos</button>
+						<br /><br /><br />
 						<span id="Cargar"></span>
+						
 					</div>
 				</section>
 				<section>
@@ -21,24 +24,39 @@
 						<input type="text" id="Referencia" name="Referencia" class="g3" placeholder="# Referencia"/>
 						<input type="text" id="Referencia" name="Cantidad" class="g2" placeholder="Cantidad"/>
 						<a class="btn small fr" id="Nuevo_Producto">Nuevo Producto</a>
+						<button class="btn pink">Buscar Producto</button>
 					</div>
 				</section>
 			</fieldset>
 			<fieldset>
-					<label>Confirmar Factura</label>
-			
-				<h3>Nombre Cliente</h3>
-				<table class="documentation">
-					<thead>
-						<tr><th>Producto</th><th>default</th><th>arguments</th><th>description</th><th>since</th><th>info</th></tr>
-					</thead>
-			<tbody>
-				<tr><th>save</th><td></td><td>key, value</td>
-				<td>save the value 'value' with the key 'key'. value can be a integer, array, string, object</td><td>1.0</td>
-				</tbody>
-			</table>	
+				<label>Confirmar Factura</label>
 			
 			
+			
+			
+							<h3>Nombre Cliente</h3>
+							<table class="documentation">
+								<thead">
+									<tr><th>Referencia</th><th>Categoria</th><th>Cantidad</th><th>Valor/U</th><th>Valor/T</th></tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>#</th>
+										<td></td><td></td><td>$</td><td></td><td>
+										<button class="btn pink">Promoción</button>										
+										</td>
+									</tr>
+									<tr>
+										<td colspan="6"><a class="btn small fr" id="Nuevo_Producto">Imprimir</a></td>
+									</tr>
+								</tbody>
+							</table>
+							
+			
+			
+			
+			
+		
 			
 			</fieldset>
 		</div>		
