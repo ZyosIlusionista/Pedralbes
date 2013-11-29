@@ -231,4 +231,23 @@
 				exit();
 			}
 		}
+		
+		
+		public function ActualizarRegistroFacturaProveedorNueva() {
+			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
+				if(AyudasPost::DatosVacios($_POST) == false) {
+					$DatosPost = AyudasPost::FormatoEspacio(AyudasPost::LimpiarInyeccionSQL($_POST));
+					$this->Modelo->ActualizarRegistroFacturaProveedorNueva($DatosPost);
+					echo $DatosPost['Cantidad'];
+				}
+				else {
+					$Plantilla = new NeuralPlantillasTwig;
+					echo $Plantilla->MostrarPlantilla('MensajeError/AjaxCamposVacios.html', AppAyuda::APP, AppAyuda::CACHE);
+				}
+			}
+			else {
+				header("Location: ".NeuralRutasApp::RutaURL('Proveedor'));
+				exit();
+			}
+		}
 	}

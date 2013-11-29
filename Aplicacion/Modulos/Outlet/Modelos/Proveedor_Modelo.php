@@ -164,4 +164,12 @@
 			$SQL->AgregarSentencia('Hora', date("H:i:s"));
 			$SQL->InsertarDatos();
 		}
+		
+		public function ActualizarRegistroFacturaProveedorNueva($Array) {
+			$SQL = new NeuralBDGab;
+			$SQL->SeleccionarDestino($this->Conexion, 'factura_proveedor_temporal');
+			$SQL->AgregarSentencia('Cantidad', $Array['Cantidad']);
+			$SQL->AgregarCondicion('Id', $Array['Id']);
+			$SQL->ActualizarDatos();
+		}
 	}

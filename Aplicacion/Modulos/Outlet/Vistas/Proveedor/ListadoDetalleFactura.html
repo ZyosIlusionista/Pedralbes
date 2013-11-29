@@ -20,10 +20,10 @@
 				</thead>
 				<tbody>
 					{% for Data in Consulta %}
-						<tr>
+						<tr id="TR{{Data.Id}}">
 							<td>{{Data.Referencia}}</td>
 							<td>{{Data.SubCategoria}}</td>
-							<td>{{Data.Cantidad}}</td>
+							<td id="RC{{Data.Id}}">{{Data.Cantidad}}</td>
 							<td>{{Data.Accion}}</td>
 							<td>{{Data.Usuario}}</td>
 							<td>{{Data.Fecha}}</td>
@@ -45,7 +45,18 @@
 			$(document).ready(function() {
 				$(".Editar").click(function() {
 					var ID = $(this).attr('data');
-					alert("el Valor es " + ID);
+					var Actualizar = prompt('Nueva Cantidad');
+					if(Actualizar) {
+						$.ajax({
+							url : "{{NeuralRutasApp.RutaURL}}Proveedor/ActualizarRegistroFacturaProveedorNueva",
+							type: "POST",
+							data: { Id : ID, Cantidad : Actualizar },
+							dataType : "html",
+							success : function(response) {
+								$("#RC" + ID).html(response);
+							}
+						});
+					}
 				});
 			});
 		</script>
