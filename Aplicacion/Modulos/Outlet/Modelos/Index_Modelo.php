@@ -17,4 +17,13 @@
 			$Consulta->PrepararQuery();
 			return $Consulta->ExecuteConsulta(AppAyuda::BASEMYSQL);
 		}
+		/* public function Prueba() {
+			$conexion=NeuralConexionBaseDatos::PDO_NotORM('PEDRALBES');
+			$DB=new NotORM($conexion);
+			$DB->usuarios();
+			
+			
+			
+		} */
+		
 	}
