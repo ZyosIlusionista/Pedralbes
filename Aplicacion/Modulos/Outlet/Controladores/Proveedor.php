@@ -77,6 +77,7 @@
 					$ValidProducto = new NeuralJQueryValidacionFormulario;
 					$ValidProducto->Requerido('Categoria', 'Seleccione la Categoria Correspondiente');
 					$ValidProducto->Requerido('SubCategoria', 'Selecciona Una SubCategoria');
+					$ValidProducto->SubmitHandler(NeuralJQueryAjax::EnviarFormularioPOST('Producto', 'CargarDatos', NeuralRutasApp::RutaURL('Proveedor/AgregarProductoFactura/'.$Id), true, AppAyuda::APP));					
 					
 					$Script[] = $ValidCodigo->MostrarValidacion('Codigo');
 					$Script[] = $ValidProducto->MostrarValidacion('Producto');
@@ -107,6 +108,7 @@
 			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
 				if(AyudasPost::DatosVacios($_POST) == false AND isset($_POST['GuardarFactura']) == true AND $_POST['GuardarFactura'] == 'Guardar') {
 					$DatosPost = AyudasPost::FormatoEspacio(AyudasPost::LimpiarInyeccionSQL($_POST));
+					$DatosPost['Referencia'] = (isset($DatosPost['SubCategoria']) == true) ? $DatosPost['SubCategoria'] : $DatosPost['Referencia'];					
 					if(is_numeric($DatosPost['Referencia']) == true) {
 						$Consulta = $this->Modelo->ConsultarReferencia($DatosPost['Referencia']);
 						if($Consulta['Cantidad'] == 1) {
@@ -150,6 +152,7 @@
 			}
 		}
 		
+				
 		public function ProcesarAgregarProductoFactura($Factura = false) {
 			if(empty($_SERVER['HTTP_X_REQUESTED_WITH']) == false AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest' AND isset($_POST) == true) {
 				unset($_POST['GuardarFactura']);

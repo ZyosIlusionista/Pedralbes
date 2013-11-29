@@ -5,8 +5,8 @@
 			<h1>Nueva Factura Proveedor</h1>
 			<p>
 				Ingreso de Nueva Suministrada por el Proveedor
-				<a class="btn small fr" href="#" id="BusquedaCodigo" style="display: none;">Busqueda Por Código</a>
-				<a class="btn small fr" href="#" id="BusquedaProducto" style="display: block;">Busqueda Por Producto</a>
+				<a class="btn small fr" id="BusquedaCodigo" style="display: none;">Busqueda Por Código</a>
+				<a class="btn small fr" id="BusquedaProducto" style="display: block;">Busqueda Por Producto</a>
 			</p>
 			<form action="#" method="POST" name="Codigo" id="Codigo">
 				<fieldset>
@@ -39,6 +39,7 @@
 							<select name="SubCategoria" id="SubCategoria">
 								<option value="">Escoja Una SubCategoria</option>
 							</select>
+							<button class="submit" name="GuardarFactura" value="Guardar">Guardar</button>
 						</div>
 					</section>
 				</fieldset>
@@ -84,6 +85,13 @@
 							$("#Codigo").css("display", "block");
 						});
 					})
+				});
+			});
+		</script>
+		<script>
+			$(document).ready(function() {
+				$("#Codigo").submit(function() {
+					$(this)[0].reset();
 				});
 			});
 		</script>

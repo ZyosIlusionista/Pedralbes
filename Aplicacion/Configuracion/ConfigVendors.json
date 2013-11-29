@@ -4,5 +4,7 @@
 	"PHPMailer":
 	{ "Activo":	true, "Ruta":"PHPMailer/class.phpmailer.php" },
 	"Twig":
-	{ "Activo":	false, "Ruta":"Twig/Autoloader.php.php" }
+	{ "Activo":	false, "Ruta":"Twig/Autoloader.php" },
+	"NotORM":
+	{ "Activo":	false, "Ruta":"NotORM/NotORM.php" }
 }

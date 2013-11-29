@@ -48,4 +48,17 @@
 	        	return \Doctrine\DBAL\DriverManager::getConnection($ParametrosConexion);
 			}
 		}
+		
+		public static function PDO_NotORM($Aplicacion = 'DEFAULT') {
+			$DatosBaseDatos = SysNeuralNucleo::CargarArchivoJsonConfiguracion('ConfigBasesDatos.json');
+			if(array_key_exists($Aplicacion, $DatosBaseDatos) == true) {
+				$Data = $DatosBaseDatos[$Aplicacion];
+			}
+			else {
+				$Data = $DatosBaseDatos['DEFAULT'];
+			}
+			$dns = 'mysql:host='.$Data['host'].';dbname='.$Data['dbname'];
+			$Conexion = new PDO($dns, $Data['user'], $Data['password']);
+			return $Conexion;
+		}
 	}

@@ -1,32 +1,53 @@
-	{% if Consulta|length>=1 %}
-		<table class="documentation">
-			<thead>
-				<tr>
-					<th>Referencia</th>
-					<th>Nombre</th>
-					<th>Cantidad</th>
-					<th>Acción</th>
-					<th>Usuario</th>
-					<th>Fecha</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for Data in Consulta %}
+<html>
+	<head>
+		<title>.:: Listado de Productos ::.</title>
+		<script src="{{NeuralRutasApp.RutaJs}}jquery.min.js"></script>
+	</head>
+	<body>
+		{% if Consulta|length>=1 %}
+			<table class="documentation">
+				<thead>
 					<tr>
-						<td>{{Data.Referencia}}</td>
-						<td>{{Data.SubCategoria}}</td>
-						<td>{{Data.Cantidad}}</td>
-						<td>{{Data.Accion}}</td>
-						<td>{{Data.Usuario}}</td>
-						<td>{{Data.Fecha}}</td>
-						<td><img src="{{NeuralRutasApp.RutaImagenes}}editar.png" title="Editar {{Data.SubCategoria}}" /></td>
-						<td><img src="{{NeuralRutasApp.RutaImagenes}}borrar.png" title="Borrar {{Data.SubCategoria}}" /></td>
+						<th>Referencia</th>
+						<th>Nombre</th>
+						<th>Cantidad</th>
+						<th>Acción</th>
+						<th>Usuario</th>
+						<th>Fecha</th>
+						<th>Editar</th>
+						<th>Eliminar</th>
 					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	{% else %}
-		No Hay Datos Ingresados
-	{% endif %}
+				</thead>
+				<tbody>
+					{% for Data in Consulta %}
+						<tr>
+							<td>{{Data.Referencia}}</td>
+							<td>{{Data.SubCategoria}}</td>
+							<td>{{Data.Cantidad}}</td>
+							<td>{{Data.Accion}}</td>
+							<td>{{Data.Usuario}}</td>
+							<td>{{Data.Fecha}}</td>
+							<td>
+								<a href="#" class="Editar" data="{{Data.Id}}">
+									<img src="{{NeuralRutasApp.RutaImagenes}}editar.png" title="Editar: {{Data.SubCategoria}}" />
+								</a>
+							</td>
+							<td><img src="{{NeuralRutasApp.RutaImagenes}}borrar.png" title="Borrar {{Data.SubCategoria}}" /></td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			No Hay Datos Ingresados
+		{% endif %}
+		
+		<script>
+			$(document).ready(function() {
+				$(".Editar").click(function() {
+					var ID = $(this).attr('data');
+					alert("el Valor es " + ID);
+				});
+			});
+		</script>
+	</body>
+</html>
